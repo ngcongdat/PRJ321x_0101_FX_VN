@@ -24,6 +24,7 @@
 </head>
 <body>
 
+	<!-- Navigation -->
 	<%@ include file="components/header.html"%>
 
 	<!-- Header -->
@@ -36,7 +37,8 @@
 			<h2 class="font-weight-light mb-0">Web Developer Courses</h2>
 		</div>
 	</header>
-	
+
+	<!-- Footer -->
 	<%@ include file="components/footer.html"%>
 
 	<!-- Bootstrap core JavaScript -->

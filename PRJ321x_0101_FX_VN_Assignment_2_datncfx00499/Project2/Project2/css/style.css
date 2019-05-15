@@ -141,3 +141,13 @@ a.btn-social {
 	font-size: 1.25rem;
 	line-height: 2rem;
 }
+
+.login-bg {
+	height: 50rem;
+	padding-top: 150px
+}
+
+#login-img {
+	border: 5px solid #2e3436;
+	border-radius: 50%;
+}
