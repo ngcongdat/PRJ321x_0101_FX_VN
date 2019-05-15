@@ -1,0 +1,131 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+}
+
+.header-menu {
+	height: 90px;
+	background-color: #F7F8F9;
+	min-width: 480px;
+}
+
+.header-menu a {
+	color: #262626 !important;
+	text-decoration: none !important;
+}
+
+.header-menu .nav-item {
+	font-weight: bold;
+}
+
+.slide-bar-box {
+	height: 630px;
+	background-image: url("https://picsum.photos/id/100/1920/1080");
+	background-position: center;
+	background-size: cover;
+}
+
+.slide-bar-box .slider-content h1 {
+	color: #002257;
+	font-weight: bold;
+	font-size: 60px;
+}
+
+.services .service-info {
+	color: #002257;
+}
+
+.services .service-info>h3 {
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.introduction .bg-intro {
+	background-image: url("https://picsum.photos/540/360");
+	background-position: center;
+	background-size: cover;
+}
+
+.introduction .intro {
+	padding: 7rem 5rem 7rem 7rem;
+	background-color: #eee;
+	color: #002257;
+}
+
+.introduction .intro h2 {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.products-gallery .product {
+	width: 285px;
+}
+
+.products-gallery .portfolio {
+	background-image: url("https://picsum.photos/id/0/540/360");
+	background-position: center;
+	background-size: cover;
+	height: 450px;
+}
+
+.products-gallery .portfolio-overlay {
+	background-color: #002257;
+	height: 100%;
+	opacity: 0;
+	transform: scale(0);
+	transition: all 0.5s;
+}
+
+.products-gallery .portfolio:hover .portfolio-overlay {
+	opacity: 0.7;
+	transform: scale(1);
+}
+
+.products-gallery .product-title {
+	color: #002257;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.footer-area {
+	background-color: #dadada;	
+} 
+
+.footer-menu a {
+	color: #262626 !important;
+	text-decoration: none !important;
+	padding: 5px 0;
+}
+
+.footer-area .footer-title {
+	color: #002257;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+@media ( max-width : 767.5px) {
+	.introduction .bg-intro {
+		height: 300px !important;
+	}
+	.products-gallery .product {
+		margin: 16px 0;	
+	}
+}
+
+@media (max-width: 991px) {
+	.header-menu {
+	height: 180px;
+}
+.header-menu .header-logo {
+	padding-top: 22.5px;
+}
+	.header-menu .header-hotline {
+	padding-bottom: 22.5px;
+}
+}
+
+@media ( min-width : 768px) and (max-width: 991px) {
+	.products-gallery .portfolio {
+		height: 360px;
+	}
+}
