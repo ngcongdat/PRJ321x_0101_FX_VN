@@ -13,17 +13,16 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
 
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
 
 	<!-- Navigation -->
 	<%@ include file="components/header.html"%>
 
-
 	<div class="container-fluid login-bg no-gutter">
 		<div class="row">
-			<div class="container no-gutter login-form shadow rounded pt-5 pb-5">
+			<div class="container no-gutter login-form shadow rounded pt-3 pb-5">
 				<div class="row">
 					<div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<img id="login-img" class="img-fluid mb-5 d-block mx-auto"
@@ -32,10 +31,9 @@
 						<div class="d-flex justify-content-center pt-2">
 							<form class="w-50 text-center" action="login" method="post">
 								<div class="form-group">
-									<input type="email" class="form-control"
-										aria-describedby="emailHelp" placeholder="Email" value=""
-										name="email">
-
+									<input type="text" class="form-control"
+										aria-describedby="emailHelp" placeholder="Username" value=""
+										name="username">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control"
@@ -43,12 +41,15 @@
 								</div>
 								<button type="submit" class="btn btn-outline-info">Login</button>
 							</form>
+							
 						</div>
+						<div id="invalid" class="text-center pt-1">${requestScope.error}</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- Footer -->
 	<%@ include file="components/footer.html"%>
 </body>

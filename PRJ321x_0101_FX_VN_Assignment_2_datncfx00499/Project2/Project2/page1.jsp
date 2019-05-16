@@ -20,7 +20,24 @@
 	<!-- Navigation -->
 	<%@ include file="components/header.html"%>
 
-	
+	<div class="container-fluid welcome-bg">
+		<div class="row welcome-inner">
+			<div class="container no-gutter welcome-box shadow rounded">
+				<div class="row h-100">
+					<div
+						class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 welcome-box text-white d-flex flex-column justify-content-center align-items-center">
+						<h2>Welcome ${user} to Java Page</h2>
+						<hr class="divide-bar w-25" />
+						<p>
+							This is page about <strong>Java</strong>. You can get more
+							information here. Good luck!
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Footer -->
 	<%@ include file="components/footer.html"%>
 

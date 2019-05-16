@@ -151,3 +151,28 @@ a.btn-social {
 	border: 5px solid #2e3436;
 	border-radius: 50%;
 }
+
+#invalid {
+	color: #cc0000;
+	font-size: 1em;
+}
+
+.welcome-bg {
+	height: 50rem;
+	padding-top: 150px;
+}
+
+.welcome-inner {
+	height: 90%;
+}
+
+.welcome-box {
+	background-image: url("../img/welcome.jpg");
+	background-position: center;
+	background-size: cover;
+	height: 100%
+}
+
+.divide-bar {
+	border-top: 2px solid white;
+}
