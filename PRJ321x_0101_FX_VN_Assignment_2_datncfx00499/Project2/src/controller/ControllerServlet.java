@@ -18,23 +18,25 @@ import model.Validate;
 @WebServlet("/login")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ControllerServlet() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ControllerServlet() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+
 		HttpSession session = request.getSession();
-		
+
 		int flag = Validate.ValidateUser(username, password);
 
-		if(flag == 1) {
+		if (flag == 1) {
 			session.setAttribute("user", "system");
 			request.getRequestDispatcher("page1.jsp").forward(request, response);
 		} else if (flag == 2) {
@@ -44,7 +46,7 @@ public class ControllerServlet extends HttpServlet {
 			request.setAttribute("error", "Login fail! Please check again!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		session.setMaxInactiveInterval(900);
+		session.setMaxInactiveInterval(30);
 	}
 
 }

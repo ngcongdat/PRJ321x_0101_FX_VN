@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +14,19 @@
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
-	
+
 </head>
 <body>
 
-<!-- Navigation -->
+	<%
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("login.jsp");
+	%>
+
+	<%
+		} else {
+	%>
+	<!-- Navigation -->
 	<%@ include file="components/header.html"%>
 
 	<div class="container-fluid welcome-bg">
@@ -30,8 +38,8 @@
 						<h2>Welcome ${user} to Web Developer</h2>
 						<hr class="divide-bar w-25" />
 						<p>
-							This is page about <strong>Web Developer</strong>. You can get more
-							information here. Good luck!
+							This is page about <strong>Web Developer</strong>. You can get
+							more information here. Good luck!
 						</p>
 					</div>
 				</div>
@@ -41,5 +49,9 @@
 
 	<!-- Footer -->
 	<%@ include file="components/footer.html"%>
+
+	<%
+		}
+	%>
 </body>
 </html>

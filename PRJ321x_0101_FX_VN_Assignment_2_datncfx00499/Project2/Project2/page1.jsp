@@ -17,6 +17,14 @@
 </head>
 <body>
 
+	<%
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("login.jsp");
+	%>
+
+	<%
+		} else {
+	%>
 	<!-- Navigation -->
 	<%@ include file="components/header.html"%>
 
@@ -41,5 +49,8 @@
 	<!-- Footer -->
 	<%@ include file="components/footer.html"%>
 
+	<%
+		}
+	%>
 </body>
 </html>

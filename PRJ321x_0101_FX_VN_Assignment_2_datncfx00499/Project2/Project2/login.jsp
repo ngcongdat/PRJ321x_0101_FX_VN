@@ -33,11 +33,11 @@
 								<div class="form-group">
 									<input type="text" class="form-control"
 										aria-describedby="emailHelp" placeholder="Username" value=""
-										name="username">
+										name="username" required="required">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control"
-										placeholder="Password" value="" name="password">
+										required="required" placeholder="Password" value="" name="password">
 								</div>
 								<button type="submit" class="btn btn-outline-info">Login</button>
 							</form>
