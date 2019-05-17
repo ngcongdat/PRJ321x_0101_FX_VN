@@ -143,8 +143,9 @@ a.btn-social {
 }
 
 .login-bg {
-	height: 50rem;
-	padding-top: 150px
+	/* height: 50rem; */
+	margin-top: 150px;
+	margin-bottom: 100px
 }
 
 #login-img {
@@ -175,4 +176,9 @@ a.btn-social {
 
 .divide-bar {
 	border-top: 2px solid white;
+}
+
+.register-bg {
+	margin-top: 100px !important;
+	margin-top: 150px !important;
 }
