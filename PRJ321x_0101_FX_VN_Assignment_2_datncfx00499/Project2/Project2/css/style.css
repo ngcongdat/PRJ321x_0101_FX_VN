@@ -63,9 +63,6 @@ header.masthead h2 {
 	font-family: 'Lato';
 }
 
-@media ( min-width : 992px) {
-}
-
 .footer {
 	padding-top: 5rem;
 	padding-bottom: 5rem;
@@ -97,9 +94,11 @@ a.btn-social {
 	font-size: 1.25rem;
 	line-height: 2rem;
 }
-.login-bg, .welcome-bg {
+
+.welcome-bg {
 	height: 500px;
 }
+
 .login-bg, .welcome-bg, .register-bg, .info-bg {
 	margin-top: 150px;
 	margin-bottom: 80px;
