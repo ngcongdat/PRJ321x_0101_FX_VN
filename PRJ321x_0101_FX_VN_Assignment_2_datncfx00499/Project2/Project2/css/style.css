@@ -46,39 +46,6 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0.8rem;
 }
 
-@media ( min-width : 992px) {
-	#mainNav {
-		padding-top: 1.5rem;
-		padding-bottom: 1.5rem;
-		-webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
-		transition: padding-top 0.3s, padding-bottom 0.3s;
-	}
-	#mainNav .navbar-brand {
-		font-size: 2em;
-		-webkit-transition: font-size 0.3s;
-		transition: font-size 0.3s;
-	}
-	#mainNav .navbar-nav {
-		margin-top: 0;
-	}
-	#mainNav .navbar-nav>li.nav-item>a.nav-link.active {
-		color: #fff;
-		background: #18BC9C;
-	}
-	#mainNav .navbar-nav>li.nav-item>a.nav-link.active:active, #mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus,
-		#mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
-		color: #fff;
-		background: #18BC9C;
-	}
-	#mainNav.navbar-shrink {
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-	}
-	#mainNav.navbar-shrink .navbar-brand {
-		font-size: 1.5em;
-	}
-}
-
 header.masthead {
 	padding-top: calc(6rem + 72px);
 	padding-bottom: 6rem;
@@ -97,17 +64,6 @@ header.masthead h2 {
 }
 
 @media ( min-width : 992px) {
-	header.masthead {
-		padding-top: calc(6rem + 106px);
-		padding-bottom: 6rem;
-	}
-	header.masthead h1 {
-		font-size: 4.75em;
-		line-height: 4rem;
-	}
-	header.masthead h2 {
-		font-size: 1.75em;
-	}
 }
 
 .footer {
@@ -141,11 +97,12 @@ a.btn-social {
 	font-size: 1.25rem;
 	line-height: 2rem;
 }
-
-.login-bg {
-	/* height: 50rem; */
+.login-bg, .welcome-bg {
+	height: 500px;
+}
+.login-bg, .welcome-bg, .register-bg, .info-bg {
 	margin-top: 150px;
-	margin-bottom: 100px
+	margin-bottom: 80px;
 }
 
 #login-img {
@@ -156,11 +113,6 @@ a.btn-social {
 #invalid {
 	color: #cc0000;
 	font-size: 1em;
-}
-
-.welcome-bg {
-	height: 50rem;
-	padding-top: 150px;
 }
 
 .welcome-inner {
@@ -178,7 +130,46 @@ a.btn-social {
 	border-top: 2px solid white;
 }
 
-.register-bg {
-	margin-top: 100px !important;
-	margin-top: 150px !important;
+@media ( min-width : 992px) {
+	#mainNav {
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		-webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+		transition: padding-top 0.3s, padding-bottom 0.3s;
+	}
+	#mainNav .navbar-brand {
+		font-size: 2em;
+		-webkit-transition: font-size 0.3s;
+		transition: font-size 0.3s;
+	}
+	#mainNav .navbar-nav {
+		margin-top: 0;
+	}
+	#mainNav .navbar-nav>li.nav-item>a.nav-link.active {
+		color: #fff;
+		background: #18BC9C;
+	}
+	#mainNav .navbar-nav>li.nav-item>a.nav-link.active:active, #mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus,
+		#mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
+		color: #fff;
+		background: #18BC9C;
+	}
+	#mainNav.navbar-shrink {
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+	#mainNav.navbar-shrink .navbar-brand {
+		font-size: 1.5em;
+	}
+	header.masthead {
+		padding-top: calc(6rem + 106px);
+		padding-bottom: 6rem;
+	}
+	header.masthead h1 {
+		font-size: 4.75em;
+		line-height: 4rem;
+	}
+	header.masthead h2 {
+		font-size: 1.75em;
+	}
 }

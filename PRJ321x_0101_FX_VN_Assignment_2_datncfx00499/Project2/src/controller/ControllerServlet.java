@@ -46,7 +46,7 @@ public class ControllerServlet extends HttpServlet {
 			request.setAttribute("error", "Login fail! Please check again!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		session.setMaxInactiveInterval(30);
+		session.setMaxInactiveInterval(300);
 	}
 
 }

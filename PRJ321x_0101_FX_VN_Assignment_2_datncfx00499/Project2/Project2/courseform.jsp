@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,19 +62,19 @@
 						<div class="d-flex justify-content-center pt-2">
 							<form class="" action="coursevalidation" method="post">
 								<div class="name-box form-group">
-									<label for="name">Full Name</label> <input class="form-control"
+									<label for="name" class="font-weight-bold">Full Name</label> <input class="form-control"
 										type="text" name="name" value="" id="name"
 										placeholder="Your Full Name" required="required">
 								</div>
 								<div class="age-box form-group">
-									<label for="age">Age</label> <input class="form-control"
+									<label for="age" class="font-weight-bold">Age</label> <input class="form-control"
 										type="number" name="age" value="" id="age"
-										placeholder="Your Age">
+										placeholder="Your Age" required="required">
 								</div>
 								<div class="countries-box form-group">
-									<label>Your Country</label> <select class="form-control"
+									<label class="font-weight-bold">Your Country</label> <select class="form-control"
 										name="countries">
-										<option value="Vietnam">Viet Nam</option>
+										<option value="Vietnam">Việt Nam</option>
 										<option value="Usa">Mỹ</option>
 										<option value="England">Anh</option>
 										<option value="China">Trung Quốc</option>
@@ -83,26 +82,27 @@
 									</select>
 								</div>
 								<div class="courses-box form-group">
-									<label>Courses</label> <select name="courses"
+									<label class="font-weight-bold">Courses</label> <select name="courses"
 										multiple="multiple" class="form-control" size="5"
 										required="required">
-										<option value="CShape">C#</option>
+										<option value="C#">C#</option>
 										<option value="Java">Java</option>
-										<option value="CPlusPlus">C++</option>
+										<option value="C++">C++</option>
 										<option value="Python">Python</option>
 										<option value="Rail">Ruby on Rail</option>
 									</select>
 								</div>
 								<div class="languages-box form-group">
-									<label class="d-block">Languages</label> <input type="checkbox"
-										name="language1" value="Vietnam" checked="checked">
-									Tiếng Việt <br> <input type="checkbox" name="language2"
-										value="English"> Tiếng Anh<br> <input
-										type="checkbox" name="language3" value="French"> Tiếng
-									Pháp<br>
+									<label class="d-block font-weight-bold" for="language">Languages</label> <input
+										type="checkbox" name="language1" value="Vietnam"
+										checked="checked" id="language"> Tiếng Việt <br>
+									<input type="checkbox" name="language2" value="English">
+									Tiếng Anh<br> <input type="checkbox" name="language3"
+										value="French"> Tiếng Pháp<br>
 								</div>
 
-								<button type="submit" class="btn btn-outline-info">Login</button>
+								<button type="submit" class="btn btn-outline-info">Submit</button>
+								<a href="index.jsp" class="btn btn-outline-info">Cancel</a>
 							</form>
 
 						</div>
