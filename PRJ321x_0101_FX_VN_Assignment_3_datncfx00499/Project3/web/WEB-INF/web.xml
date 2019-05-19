@@ -15,6 +15,15 @@
     <url-pattern>/loginprocess</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>SignupProcess</servlet-name>
+    <servlet-class>com.controller.SignupProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignupProcess</servlet-name>
+    <url-pattern>/signupprocess</url-pattern>
+  </servlet-mapping>
+  
   <!-- Servlet Mapping -->
   <servlet>
     <servlet-name>LoginJSP</servlet-name>

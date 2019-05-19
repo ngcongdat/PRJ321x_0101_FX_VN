@@ -7,7 +7,6 @@ package com.controller;
 
 import com.model.ValidateUser;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,28 +16,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiny
  */
-public class LoginProcess extends HttpServlet {
+public class SignupProcess extends HttpServlet {
 
-  @Override
+  
+  
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
+    ValidateUser validUser = new ValidateUser();
     String username = request.getParameter("username");
     String password = request.getParameter("password");
-
-    List<String> errors = ValidateUser.ValidateUserLogin(username, password);
-
-    if (errors.size() != 0) {
-      request.setAttribute("errors", errors);
-      request.getRequestDispatcher("login.jsp").forward(request, response);
-    }
     
-    response.getWriter().print("<h2>OK</h2>");
+    boolean isValidUsername = validUser.ValidateUsername(username);
+    boolean isValidPassword = validUser.ValidatePassword(password);
+    
   }
 
   @Override
   public String getServletInfo() {
-    return "Process user login to system";
+    return "Process when guest register user";
   }// </editor-fold>
 
 }
