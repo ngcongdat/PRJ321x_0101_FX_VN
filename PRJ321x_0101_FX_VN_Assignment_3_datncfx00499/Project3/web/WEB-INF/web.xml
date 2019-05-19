@@ -12,13 +12,65 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>loginProcess</servlet-name>
-        <url-pattern>/loginProcess</url-pattern>
+        <url-pattern>/loginprocess</url-pattern>
     </servlet-mapping>
  
     <!-- Servlet Mapping -->
+    <servlet>
+        <servlet-name>LoginJSP</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginJSP</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>IndexJSP</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IndexJSP</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>HomeJSP</servlet-name>
+        <jsp-file>/home.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeJSP</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ProfileJSP</servlet-name>
+        <jsp-file>/profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileJSP</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UserCouterJSP</servlet-name>
+        <jsp-file>/userCounter.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserCouterJSP</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SignUpJSP</servlet-name>
+        <jsp-file>/signup.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUpJSP</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    
   
-    
-    
     <!-- Set session timeout-->
     <session-config>
         <session-timeout>
