@@ -1,80 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>demoservlet</display-name>
-    <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
-    </welcome-file-list>
+  <display-name>demoservlet</display-name>
+  <welcome-file-list>
+    <welcome-file>home.jsp</welcome-file>
+  </welcome-file-list>
   
-    <!-- Servlet Mapping -->
-    <servlet>
-        <servlet-name>loginProcess</servlet-name>
-        <servlet-class>com.controller.loginProcess</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>loginProcess</servlet-name>
-        <url-pattern>/loginprocess</url-pattern>
-    </servlet-mapping>
- 
-    <!-- Servlet Mapping -->
-    <servlet>
-        <servlet-name>LoginJSP</servlet-name>
-        <jsp-file>/login.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginJSP</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>IndexJSP</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>IndexJSP</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>HomeJSP</servlet-name>
-        <jsp-file>/home.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomeJSP</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>ProfileJSP</servlet-name>
-        <jsp-file>/profile.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ProfileJSP</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>UserCouterJSP</servlet-name>
-        <jsp-file>/userCounter.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserCouterJSP</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>SignUpJSP</servlet-name>
-        <jsp-file>/signup.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SignUpJSP</servlet-name>
-        <url-pattern>/signup</url-pattern>
-    </servlet-mapping>
-    
+  <!-- Servlet Mapping -->
+  <servlet>
+    <servlet-name>LoginProcess</servlet-name>
+    <servlet-class>com.controller.LoginProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginProcess</servlet-name>
+    <url-pattern>/loginprocess</url-pattern>
+  </servlet-mapping>
   
-    <!-- Set session timeout-->
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
+  <!-- Servlet Mapping -->
+  <servlet>
+    <servlet-name>LoginJSP</servlet-name>
+    <jsp-file>/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginJSP</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>IndexJSP</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexJSP</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>HomeJSP</servlet-name>
+    <jsp-file>/home.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeJSP</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProfileJSP</servlet-name>
+    <jsp-file>/profile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileJSP</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UserCouterJSP</servlet-name>
+    <jsp-file>/userCounter.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCouterJSP</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SignUpJSP</servlet-name>
+    <jsp-file>/signup.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignUpJSP</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Set session timeout-->
+  <session-config>
+    <session-timeout>
+      30
+    </session-timeout>
+  </session-config>
 </web-app>
