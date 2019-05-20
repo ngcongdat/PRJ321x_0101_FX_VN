@@ -28,6 +28,11 @@
   </head>
   <body>
 
+    <%
+      if (session.getAttribute("user") != null) {
+        request.getRequestDispatcher("index").forward(request, response);
+      } else {%>
+
     <%-- Get errors list via parameter --%>
     <% List<String> errors = (List<String>) request.getAttribute("errors"); %>
 
@@ -82,5 +87,7 @@
 
     <!-- Include navigation bar -->
     <%@include file="components/footer.html" %>
+
+    <% }%>
   </body>
 </html>

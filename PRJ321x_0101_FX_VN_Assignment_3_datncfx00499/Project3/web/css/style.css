@@ -1,5 +1,4 @@
 body {
-  font-family: 'Roboto Mono', monospace;
   box-sizing: border-box;
 }
 
@@ -7,10 +6,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Mono', monospace;
 }
 
-.index-profile-box {
+.index .index-profile-box {
   background-color: #DE6B48;
 }
 
 .index .index-counter-box {
   background-color: #F4B9B2;
+}
+
+.profile-box {
+  background-color: #E5B181 !important;
 }

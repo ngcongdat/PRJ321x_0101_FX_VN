@@ -29,14 +29,14 @@
   <body>
 
     <%
-      if (session.getAttribute("logged") == null) {
+      if (session.getAttribute("user") == null) {
         response.sendRedirect("login");
       } else {%>
 
     <%-- Include navigation bar --%>
     <%@include file="components/navbar.html" %>
 
-    <%-- Login form --%>
+    <%-- Main container --%>
     <div class="container-fluid mt-5 mb-5">
       <div class="container shadow rounded index">
         <div class="row">

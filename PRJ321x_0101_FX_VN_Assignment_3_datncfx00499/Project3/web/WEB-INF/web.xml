@@ -5,6 +5,11 @@
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+    <param-name>totalUserLogin</param-name>
+    <param-value>0</param-value>
+  </context-param>
+  
   <!-- Servlet Mapping -->
   <servlet>
     <servlet-name>LoginProcess</servlet-name>
