@@ -6,6 +6,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +36,16 @@ public class ValidateUser {
   public boolean ValidateUsername(String username) {
     Pattern pattern = Pattern.compile(RULES_OF_USERNAME);
     Matcher matcher = pattern.matcher(username);
-    return matcher.matches();
+
+    UsersMap uMap = new UsersMap();
+    HashMap<String, String> users = uMap.getUsers();
+    
+    if(matcher.matches() && (users.containsKey(username) == false)) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   public boolean ValidatePassword(String password) {

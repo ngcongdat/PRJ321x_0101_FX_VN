@@ -5,8 +5,12 @@
  */
 package com.controller;
 
+import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginProcess extends HttpServlet {
 
+  UsersMap uMap = new UsersMap();
+
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    
+
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
@@ -32,8 +38,21 @@ public class LoginProcess extends HttpServlet {
       request.setAttribute("errors", errors);
       request.getRequestDispatcher("login.jsp").forward(request, response);
     }
-    
-    response.getWriter().print("<h2>OK</h2>");
+
+    HashMap<String, String> users = uMap.getUsers();
+    if (!users.containsKey(username)) {
+      errors.add("Username is not exist");
+      request.setAttribute("errors", errors);
+      request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+
+    if (users.containsKey(username)) {
+      if (!users.get(username).equals(password)) {
+        errors.add("Password is wrong");
+        request.setAttribute("errors", errors);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+      }
+    }
   }
 
   @Override

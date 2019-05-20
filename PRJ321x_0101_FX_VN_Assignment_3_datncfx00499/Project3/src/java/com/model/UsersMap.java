@@ -11,9 +11,10 @@ import java.util.HashMap;
  *
  * @author tiny
  */
-public class Users {
+public class UsersMap {
 
-  private HashMap<String, String> users;
+  private static HashMap<String, String> users = new HashMap<>();
+ 
 
   public HashMap<String, String> getUsers() {
     return users;
@@ -23,7 +24,7 @@ public class Users {
     this.users = users;
   }
 
-  public void addUsers(User u) {
-    users.put(u.getUsername(), u.getPassword());
+  public void addUsers(String username, String password) {
+    this.users.put(username, password);
   }
 }
