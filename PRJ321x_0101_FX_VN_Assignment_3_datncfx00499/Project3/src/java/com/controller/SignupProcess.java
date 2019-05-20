@@ -11,6 +11,7 @@ import com.model.ValidateUser;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +28,20 @@ public class SignupProcess extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
-    ValidateUser validUser = new ValidateUser();
+    // Get parameter from client
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    boolean isValidUsername = validUser.ValidateUsername(username);
-    boolean isValidPassword = validUser.ValidatePassword(password);
+    // Validate users when sign in
+    ValidateUser validUser = new ValidateUser();
+    String errorUsername = validUser.ValidateUsername(username);
+    String errorPassword = validUser.ValidatePassword(password);
 
-    if (isValidUsername && isValidPassword) {
-      uMap.addUsers(username, password);
+    List<String> errors = ValidateUser.ValidateUserSignin(errorUsername, errorPassword);
+
+    if (errors.size() != 0) {
+      request.setAttribute("errors", errors);
+      request.getRequestDispatcher("signup").forward(request, response);
     }
 
     Iterator<String> i = uMap.getUsers().values().iterator();

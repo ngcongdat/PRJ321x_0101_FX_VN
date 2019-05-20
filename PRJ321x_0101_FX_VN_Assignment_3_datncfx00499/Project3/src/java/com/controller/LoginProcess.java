@@ -30,11 +30,14 @@ public class LoginProcess extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
+    // Get parameter from client
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     
+    // Get session
     HttpSession session = request.getSession();
 
+    // Validate user when login
     List<String> errors = ValidateUser.ValidateUserLogin(username, password);
 
     if (errors.size() != 0) {

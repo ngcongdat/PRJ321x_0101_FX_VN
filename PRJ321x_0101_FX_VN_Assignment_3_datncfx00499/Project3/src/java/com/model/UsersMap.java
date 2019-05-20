@@ -14,8 +14,11 @@ import java.util.HashMap;
 public class UsersMap {
 
   private static HashMap<String, String> users = new HashMap<>();
- 
-
+  
+  public UsersMap() {
+    users.put("tinynguyen", "NcDat!0810");
+  }
+  
   public HashMap<String, String> getUsers() {
     return users;
   }

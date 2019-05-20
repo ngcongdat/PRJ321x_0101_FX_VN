@@ -4,22 +4,32 @@
     Author     : tiny
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign Up</title>
-    
+
     <!-- Meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <%-- Customize CSS --%>
+    <link rel="stylesheet" href="./css/style.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+
   </head>
   <body>
+
+    <%-- Get errors list via parameter --%>
+    <% List<String> errors = (List<String>) request.getAttribute("errors"); %>
 
     <%-- Include navigation bar --%>
     <%@include file="components/navbar.html" %>
@@ -28,6 +38,26 @@
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
         <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+            <h2>Sign Up</h2>
+          </div>
+          <%-- Notify errors when signup --%>
+          <%
+            if (errors != null) {
+          %>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex flex-column align-items-center">
+            <div class="w-50 text-center">
+              <%
+                for (int i = 0; i < errors.size(); i++) {
+              %>
+              <p class="m-0 text-danger font-weight-bold"><%= errors.get(i)%></p>
+              <% } %>
+            </div>
+          </div>
+          <%
+            }
+          %>
+
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
             <form action="signupprocess" method="post" class="w-50">
               <div class="form-group">

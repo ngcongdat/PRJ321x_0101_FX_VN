@@ -16,8 +16,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <%-- Customize CSS --%>
+    <link rel="stylesheet" href="./css/style.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 
   </head>
   <body>
@@ -32,6 +38,9 @@
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
         <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+            <h2>Log In</h2>
+          </div>
           <%
             if (errors != null) {
           %>
