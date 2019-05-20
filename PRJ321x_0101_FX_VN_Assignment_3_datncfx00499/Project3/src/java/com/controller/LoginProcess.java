@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,8 @@ public class LoginProcess extends HttpServlet {
 
     String username = request.getParameter("username");
     String password = request.getParameter("password");
+    
+    HttpSession session = request.getSession();
 
     List<String> errors = ValidateUser.ValidateUserLogin(username, password);
 
@@ -51,6 +54,9 @@ public class LoginProcess extends HttpServlet {
         errors.add("Password is wrong");
         request.setAttribute("errors", errors);
         request.getRequestDispatcher("login.jsp").forward(request, response);
+      } else {
+        session.setAttribute("logged", username);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
       }
     }
   }

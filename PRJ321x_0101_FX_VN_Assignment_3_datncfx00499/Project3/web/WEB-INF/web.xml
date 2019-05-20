@@ -67,7 +67,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UserCouterJSP</servlet-name>
-    <url-pattern>/users</url-pattern>
+    <url-pattern>/usercounter</url-pattern>
   </servlet-mapping>
   
   <servlet>
