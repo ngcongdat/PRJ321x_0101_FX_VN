@@ -5,11 +5,9 @@
  */
 package com.controller;
 
-import com.model.User;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -47,11 +45,14 @@ public class SignupProcess extends HttpServlet {
       request.setAttribute("errors", errors);
       request.getRequestDispatcher("signup").forward(request, response);
     }
-
+    
+    // Clear session
     session.invalidate();
     
+    // Add user to Map
     uMap.addUsers(username, password);
     
+    // Redirect 
     request.getRequestDispatcher("login").forward(request, response);
     
     Iterator<String> i = uMap.getUsers().values().iterator();

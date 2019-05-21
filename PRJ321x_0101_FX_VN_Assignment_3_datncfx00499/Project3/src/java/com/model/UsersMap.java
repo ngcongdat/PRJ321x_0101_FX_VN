@@ -6,6 +6,7 @@
 package com.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,17 +14,17 @@ import java.util.HashMap;
  */
 public class UsersMap {
 
-  private static HashMap<String, String> users = new HashMap<>();
+  private static Map<String, String> users = new HashMap<>();
   
   public UsersMap() {
-    users.put("tinynguyen", "NcDat!0810");
+    users.put("admin", "admin");
   }
   
-  public HashMap<String, String> getUsers() {
+  public Map<String, String> getUsers() {
     return users;
   }
 
-  public void setUsers(HashMap<String, String> users) {
+  public void setUsers(Map<String, String> users) {
     this.users = users;
   }
 

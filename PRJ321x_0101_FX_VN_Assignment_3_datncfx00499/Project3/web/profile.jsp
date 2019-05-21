@@ -27,6 +27,7 @@
   </head>
   <body>
 
+    <%-- Request user must be logged in to view page --%>
     <%
       if (session.getAttribute("user") == null) {
         response.sendRedirect("login");

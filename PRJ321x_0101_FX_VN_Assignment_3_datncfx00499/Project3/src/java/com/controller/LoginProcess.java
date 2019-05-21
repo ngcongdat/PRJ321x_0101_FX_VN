@@ -9,10 +9,9 @@ import com.model.User;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +46,8 @@ public class LoginProcess extends HttpServlet {
       request.getRequestDispatcher("login").forward(request, response);
     }
 
-    HashMap<String, String> users = uMap.getUsers();
+    // Check user exists
+    Map<String, String> users = uMap.getUsers();
     if (!users.containsKey(username)) {
       errors.add("Username is not exist");
       request.setAttribute("errors", errors);
@@ -55,30 +55,36 @@ public class LoginProcess extends HttpServlet {
     }
 
     if (users.containsKey(username)) {
+      // Validate password of this user
       if (!users.get(username).equals(password)) {
         errors.add("Password is wrong");
         request.setAttribute("errors", errors);
         request.getRequestDispatcher("login").forward(request, response);
       } else {
+        // Now user is valid, user can do something
+        // Get all attributes from servlet context
         ServletContext context = getServletContext();
 
         Integer countUserLogin = (Integer) context.getAttribute("countUserLogin");
-        HashMap<Integer, String> allUsers = (HashMap<Integer, String>) context.getAttribute("allUsers");
+        Map<String, String> allUsers = (Map<String, String>) context.getAttribute("allUsers");
 
+        // Check attributes
         if (countUserLogin == null) {
           countUserLogin = 1;
           allUsers = new HashMap<>();
-          allUsers.put(countUserLogin, username);
+          allUsers.put(session.getId(), username);
         } else {
           if (allUsers.containsValue(username) == false) {
             countUserLogin++;
-            allUsers.put(countUserLogin, username);
+            allUsers.put(session.getId(), username);
           }
         }
-
+        
+        // Set all attributes again to servlet context
         context.setAttribute("countUserLogin", countUserLogin);
         context.setAttribute("allUsers", allUsers);
 
+        // Set attribute for session and redirect
         session.setAttribute("user", new User(username, password));
         request.getRequestDispatcher("index").forward(request, response);
       }

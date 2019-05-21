@@ -27,8 +27,6 @@
   </head>
   <body>
 
-
-
     <%-- Include navigation bar --%>
     <%@include file="components/navbar.jsp" %>
 
@@ -39,7 +37,7 @@
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
             <h2 class="text-primary">Home Page</h2>
-          </div>
+          </div>          
           <%
             if (session.getAttribute("user") == null) {%> 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 d-flex flex-column align-items-center justify-content-center">
@@ -62,7 +60,6 @@
 
     <!-- Include navigation bar -->
     <%@include file="components/footer.html" %>
-
 
   </body>
 </html>

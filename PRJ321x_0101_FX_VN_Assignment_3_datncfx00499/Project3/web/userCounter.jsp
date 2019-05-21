@@ -4,6 +4,8 @@
     Author     : tiny
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,14 +35,14 @@
         response.sendRedirect("login");
       } else {%>
 
-    <% HashMap<Integer, String> allUsers = (HashMap<Integer, String>) application.getAttribute("allUsers");%>
+    <% Map<String, String> allUsers = (Map<String, String>) application.getAttribute("allUsers");%>
 
     <%-- Include navigation bar --%>
     <%@include file="components/navbar.jsp" %>
 
     <%-- Main container --%>
     <div class="container-fluid mt-5 mb-5">
-      <div class="container pt-5 pb-5 shadow rounded profile-box">
+      <div class="container pt-5 pb-5 shadow rounded" style="background-color: #E5B181;">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
             <h2 class="text-white">All Users Online</h2>
@@ -48,24 +50,24 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 d-flex flex-column align-items-center justify-content-center">
             <h1 class="text-white">${applicationScope.countUserLogin}</h1>
             <h2 class="text-white mt-5">List Users</h2>
-            <%
-              Set<Integer> keySet = allUsers.keySet();
-              for (Integer i : keySet) {%>
+
             <table class="table table-dark text-center w-50">
               <tbody>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Username</th>
                 </tr>
+                <%-- Show all users online --%>
+                <%
+                  Set<String> keySet = allUsers.keySet();
+                  for (String i : keySet) {%>
                 <tr>
-                  <td><%=i%></td>
                   <td><%=allUsers.get(i)%></td>
                 </tr>
+                <%
+                  }
+                %>
               </tbody>
             </table>
-            <%
-              }
-            %>
           </div>
         </div>
       </div>

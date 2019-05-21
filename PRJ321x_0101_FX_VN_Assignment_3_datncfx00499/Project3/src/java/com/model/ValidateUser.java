@@ -6,8 +6,8 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +58,7 @@ public class ValidateUser {
     Matcher matcher = pattern.matcher(username);
 
     UsersMap uMap = new UsersMap();
-    HashMap<String, String> users = uMap.getUsers();
+    Map<String, String> users = uMap.getUsers();
 
     if (matcher.matches() == false) {
       error = "Username must be length than 6 character <br/> Username can't contains \"$#@%^&*\"";

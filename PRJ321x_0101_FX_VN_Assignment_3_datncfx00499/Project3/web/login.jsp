@@ -28,6 +28,7 @@
   </head>
   <body>
 
+    <%-- If user logged in, redirect to index page --%>
     <%
       if (session.getAttribute("user") != null) {
         request.getRequestDispatcher("index").forward(request, response);
@@ -46,6 +47,7 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
             <h2>Log In</h2>
           </div>
+          <%-- Notify errors when login --%>          
           <%
             if (errors != null) {
           %>
