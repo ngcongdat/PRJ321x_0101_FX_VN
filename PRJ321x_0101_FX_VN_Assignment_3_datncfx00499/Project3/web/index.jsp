@@ -34,18 +34,18 @@
       } else {%>
 
     <%-- Include navigation bar --%>
-    <%@include file="components/navbar.html" %>
+    <%@include file="components/navbar.jsp" %>
 
     <%-- Main container --%>
     <div class="container-fluid mt-5 mb-5">
       <div class="container shadow rounded index">
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column align-items-center justify-content-center pt-5 pb-5 text-white index-profile-box">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column align-items-center justify-content-center pt-5 pb-5 text-white" style="background-color: #DE6B48;">
             <h1>Profile</h1>
             <p>View my profile</p>
             <a href="profile" class="btn btn-info">View</a>
           </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column align-items-center justify-content-center pt-5 pb-5 text-white index-counter-box">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex flex-column align-items-center justify-content-center pt-5 pb-5 text-white" style="background-color: #F4B9B2;">
             <h1>Counter User</h1>
             <p>Who is online?</p>
             <a href="usercounter" class="btn btn-info">View</a>

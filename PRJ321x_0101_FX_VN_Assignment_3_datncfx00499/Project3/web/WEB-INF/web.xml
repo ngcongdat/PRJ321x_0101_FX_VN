@@ -5,11 +5,6 @@
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
   
-  <context-param>
-    <param-name>totalUserLogin</param-name>
-    <param-value>0</param-value>
-  </context-param>
-  
   <!-- Servlet Mapping -->
   <servlet>
     <servlet-name>LoginProcess</servlet-name>
@@ -27,6 +22,15 @@
   <servlet-mapping>
     <servlet-name>SignupProcess</servlet-name>
     <url-pattern>/signupprocess</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LogoutProcess</servlet-name>
+    <servlet-class>com.controller.LogoutProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutProcess</servlet-name>
+    <url-pattern>/logoutprocess</url-pattern>
   </servlet-mapping>
   
   <!-- Servlet Mapping -->

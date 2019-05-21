@@ -37,7 +37,7 @@
     <% List<String> errors = (List<String>) request.getAttribute("errors"); %>
 
     <%-- Include navigation bar --%>
-    <%@include file="components/navbar.html" %>
+    <%@include file="components/navbar.jsp" %>
 
     <%-- Login form --%>
     <div class="container-fluid mt-5 mb-5">

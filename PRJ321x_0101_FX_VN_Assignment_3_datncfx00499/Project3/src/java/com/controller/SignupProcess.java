@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,6 +33,9 @@ public class SignupProcess extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
+    // Get session
+    HttpSession session = request.getSession();
+
     // Validate users when sign in
     ValidateUser validUser = new ValidateUser();
     String errorUsername = validUser.ValidateUsername(username);
@@ -44,6 +48,12 @@ public class SignupProcess extends HttpServlet {
       request.getRequestDispatcher("signup").forward(request, response);
     }
 
+    session.invalidate();
+    
+    uMap.addUsers(username, password);
+    
+    request.getRequestDispatcher("login").forward(request, response);
+    
     Iterator<String> i = uMap.getUsers().values().iterator();
     while (i.hasNext()) {
       System.out.println(i.next());

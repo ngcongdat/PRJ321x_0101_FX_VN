@@ -33,11 +33,11 @@
       } else {%>
 
     <%-- Include navigation bar --%>
-    <%@include file="components/navbar.html" %>
+    <%@include file="components/navbar.jsp" %>
 
     <%-- Main container --%>
     <div class="container-fluid mt-5 mb-5">
-      <div class="container pt-5 pb-5 shadow rounded profile-box">
+      <div class="container pt-5 pb-5 shadow rounded" style="background-color: #E5B181;">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
             <h2 class="text-white">My Profile</h2>
