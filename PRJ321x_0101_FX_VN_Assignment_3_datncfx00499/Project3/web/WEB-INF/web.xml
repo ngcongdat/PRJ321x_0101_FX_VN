@@ -33,6 +33,15 @@
     <url-pattern>/logoutprocess</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>com.controller.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/homeprocess</url-pattern>
+  </servlet-mapping>
+  
   <!-- Servlet Mapping -->
   <servlet>
     <servlet-name>LoginJSP</servlet-name>

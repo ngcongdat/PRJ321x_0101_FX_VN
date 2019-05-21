@@ -6,6 +6,7 @@
 package com.controller;
 
 import com.model.User;
+import com.model.UserData;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
@@ -25,11 +26,18 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginProcess extends HttpServlet {
 
-  UsersMap uMap = new UsersMap();
+  UsersMap uMap;
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+
+    // Read all users from file to map
+    if (UserData.readFile() != null) {
+      uMap.setUsers(UserData.readFile());
+    } else {
+      uMap = new UsersMap();
+    }
 
     // Get parameter from client
     String username = request.getParameter("username");
@@ -79,7 +87,7 @@ public class LoginProcess extends HttpServlet {
             allUsers.put(session.getId(), username);
           }
         }
-        
+
         // Set all attributes again to servlet context
         context.setAttribute("countUserLogin", countUserLogin);
         context.setAttribute("allUsers", allUsers);

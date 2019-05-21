@@ -5,6 +5,7 @@
  */
 package com.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,14 +13,14 @@ import java.util.Map;
  *
  * @author tiny
  */
-public class UsersMap {
+public class UsersMap implements Serializable {
 
   private static Map<String, String> users = new HashMap<>();
-  
+
   public UsersMap() {
     users.put("admin", "admin");
   }
-  
+
   public Map<String, String> getUsers() {
     return users;
   }
