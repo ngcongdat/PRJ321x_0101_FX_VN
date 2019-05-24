@@ -38,7 +38,7 @@
             <h2>Log In</h2>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-            <form action="controller" method="post" class="w-50">
+            <form action="loginprocess" method="post" class="w-50">
               <input type="hidden" name="action" value="dologin" />
               <div>
                 <h3 class="text-danger"><%= request.getAttribute("error") %></h3>

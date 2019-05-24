@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Project4">
+<Context path="/MyBlog">
   <Resource name="jdbc/myblog" auth="Container" type="javax.sql.DataSource"
             maxTotal="100" maxIdle="30" maxWaitMillis="10000"
             username="tiny" password="NcDat!08102407" driverClassName="com.mysql.jdbc.Driver"

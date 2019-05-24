@@ -18,12 +18,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiny
  */
-public class LoginProcess extends HttpServlet {
+public class Controller extends HttpServlet {
 
+  
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
+    
+  }
+
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
     Connection conn = null;
     try {
       conn = new DBContext().getConnection();
@@ -31,9 +39,9 @@ public class LoginProcess extends HttpServlet {
       response.getWriter().println(ex.toString());
       return;
     }
-    
+
     response.getWriter().println("Connect database success");
-    
+
     try {
       conn.close();
     } catch (SQLException ex) {
@@ -41,11 +49,5 @@ public class LoginProcess extends HttpServlet {
       return;
     }
   }
-
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-  }
-
 
 }
