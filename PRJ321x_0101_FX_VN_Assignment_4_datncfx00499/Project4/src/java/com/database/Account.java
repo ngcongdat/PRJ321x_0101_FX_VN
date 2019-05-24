@@ -44,4 +44,28 @@ public class Account {
       return true;
     }
   }
+
+  public boolean exist(String username) throws SQLException {
+
+    String sql = "select count(*) from Users where username=?";
+    PreparedStatement ps = conn.prepareStatement(sql);
+
+    ps.setString(1, username);
+    
+    ResultSet rs = ps.executeQuery();
+
+    int result = 0;
+
+    if (rs.next()) {
+      result = rs.getInt("count(*)");
+    }
+
+    if (result != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+//  public void create()
 }

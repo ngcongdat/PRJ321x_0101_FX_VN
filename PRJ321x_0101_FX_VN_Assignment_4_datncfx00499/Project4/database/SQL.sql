@@ -12,4 +12,6 @@ CREATE TABLE IF NOT EXISTS Users(
 );
 
 INSERT INTO Users(name, email, username, password) VALUES ('Cong Dat', 'congdat@gmail.com', 'tiny', '12345678');
+INSERT INTO Users(name, email, username, password) VALUES ('Tiny', 'ncd.ccpn@gmail.com', 'tinynguyen', 'NcDat!0810');
 
+select count(*) from Users where username='tiny' and password='12345672';

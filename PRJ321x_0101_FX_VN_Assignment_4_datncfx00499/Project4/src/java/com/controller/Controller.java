@@ -64,6 +64,24 @@ public class Controller extends HttpServlet {
       } catch (SQLException ex) {
         response.getWriter().println("Error query data! Please check again!");
       }
+    } else if (action.equals("dosignup")) {
+      Users user = new Users(username, password);
+      if(!user.validate(username, password)) {
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("signup").forward(request, response);
+      } 
+      
+      Account account = new Account(conn);
+      
+      try {
+        if(account.exist(username)) {
+          user.setError("Username is exist");
+          request.setAttribute("user", user);
+          request.getRequestDispatcher("signup").forward(request, response);
+        }
+      } catch (SQLException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
     try {
