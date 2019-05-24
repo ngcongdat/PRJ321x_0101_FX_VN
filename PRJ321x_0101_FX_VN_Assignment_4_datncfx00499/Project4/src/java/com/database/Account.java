@@ -67,5 +67,16 @@ public class Account {
     }
   }
   
-//  public void create()
+  public void create(String username, String password) throws SQLException {
+    
+    String sql = "insert into Users (username, password) values (?, ?)";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    
+    ps.setString(1, username);
+    ps.setString(2, password);
+    
+    ps.executeUpdate();
+    
+    ps.close();
+  }
 }

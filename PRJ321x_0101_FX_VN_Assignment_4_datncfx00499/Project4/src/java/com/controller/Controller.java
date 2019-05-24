@@ -34,26 +34,28 @@ public class Controller extends HttpServlet {
     if (action == null) {
       request.getRequestDispatcher("index").forward(request, response);
     }
-    
+
     HttpSession session = request.getSession();
 
     Connection conn = null;
+    // Connect to database
     try {
       conn = new DBContext().getConnection();
     } catch (Exception ex) {
       response.getWriter().println(ex.toString());
       return;
     }
+    Account account = new Account(conn);
 
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
+    // Login Process
     if (action.equals("dologin")) {
       Users user = new Users(username, password);
 
-      Account account = new Account(conn);
-      
       try {
+        // Query user in database        
         if (account.login(username, password)) {
           session.setAttribute("user", user);
           request.getRequestDispatcher("blogs").forward(request, response);
@@ -64,23 +66,27 @@ public class Controller extends HttpServlet {
       } catch (SQLException ex) {
         response.getWriter().println("Error query data! Please check again!");
       }
-    } else if (action.equals("dosignup")) {
+    } // Sign Up Process
+    else if (action.equals("dosignup")) {
       Users user = new Users(username, password);
-      if(!user.validate(username, password)) {
+      // Validate user info from sign up form        
+      if (!user.validate(username, password)) {
         request.setAttribute("user", user);
         request.getRequestDispatcher("signup").forward(request, response);
-      } 
-      
-      Account account = new Account(conn);
-      
-      try {
-        if(account.exist(username)) {
-          user.setError("Username is exist");
-          request.setAttribute("user", user);
-          request.getRequestDispatcher("signup").forward(request, response);
+      } else {
+        try {
+          // Check user is exist or not?        
+          if (account.exist(username)) {
+            user.setError("Username is exist");
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("signup").forward(request, response);
+          } else {
+            account.create(username, password);
+            request.getRequestDispatcher("login").forward(request, response);
+          }
+        } catch (SQLException ex) {
+          Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-      } catch (SQLException ex) {
-        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
 
@@ -90,7 +96,6 @@ public class Controller extends HttpServlet {
       response.getWriter().println(ex.toString());
       return;
     }
-
 
   }
 

@@ -46,14 +46,6 @@
             <form action="controller" method="post" class="w-50">
               <input type="hidden" name="action" value="dosignup" />
               <div class="form-group">
-                <label for="name" class="font-weight-bold">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label for="email" class="font-weight-bold">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="">
-              </div>
-              <div class="form-group">
                 <label for="username" class="font-weight-bold">Username</label>
                 <input type="text" class="form-control" id="username" required="required" name="username" value="">
               </div>
