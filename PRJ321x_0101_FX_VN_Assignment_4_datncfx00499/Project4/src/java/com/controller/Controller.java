@@ -50,7 +50,11 @@ public class Controller extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    // Login Process
+    /**
+     * Login Process
+     *
+     * Validate, query in database and login
+     */
     if (action.equals("dologin")) {
       Users user = new Users(username, password);
 
@@ -66,7 +70,11 @@ public class Controller extends HttpServlet {
       } catch (SQLException ex) {
         response.getWriter().println("Error query data! Please check again!");
       }
-    } // Sign Up Process
+    } /**
+     * Sign Up Process
+     *
+     * Validate, create new user and insert into database
+     */
     else if (action.equals("dosignup")) {
       Users user = new Users(username, password);
       // Validate user info from sign up form        
@@ -88,6 +96,9 @@ public class Controller extends HttpServlet {
           Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
+    } else if (action.equals("dopost")) {
+      Users user = (Users) session.getAttribute("user");
+      System.out.println(user.getUsername());
     }
 
     try {
