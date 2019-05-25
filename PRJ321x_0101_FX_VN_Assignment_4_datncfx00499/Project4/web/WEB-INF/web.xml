@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
   
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/pages/Posts.jsp</welcome-file>
   </welcome-file-list>
   
   <resource-ref>
@@ -29,7 +29,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PostDetailJSP</servlet-name>
-    <url-pattern>/blogs</url-pattern>
+    <url-pattern>/post</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -38,7 +38,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PostsJSP</servlet-name>
-    <url-pattern>/post</url-pattern>
+    <url-pattern>/blogs</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -59,6 +59,15 @@
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
      
+  <servlet>
+    <servlet-name>CreatePostJSP</servlet-name>
+    <jsp-file>/pages/CreatePost.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreatePostJSP</servlet-name>
+    <url-pattern>/createpost</url-pattern>
+  </servlet-mapping>
+  
   <!-- Session config time out --> 
   <session-config>
     <session-timeout>
