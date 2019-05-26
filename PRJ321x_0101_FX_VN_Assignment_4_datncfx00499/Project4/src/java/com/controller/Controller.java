@@ -111,6 +111,9 @@ public class Controller extends HttpServlet {
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
+    } else {
+      session.invalidate();
+      response.sendRedirect("blogs");
     }
 
     try {

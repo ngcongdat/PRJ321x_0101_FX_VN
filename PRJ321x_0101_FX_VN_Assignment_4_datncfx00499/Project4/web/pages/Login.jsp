@@ -30,7 +30,7 @@
     <% String error = (String) request.getAttribute("error"); %>
 
     <%-- Include navigation bar --%>
-    <%--@include file="components/navbar.jsp" --%>
+    <%@include file="../components/navbar.jsp" %>
 
     <%-- Login form --%>
     <div class="container-fluid mt-5 mb-5">
@@ -69,7 +69,7 @@
     </div>
 
     <!-- Include navigation bar -->
-    <%--@include file="components/footer.html" --%>
+    <%@include file="../components/footer.html" %>
 
   </body>
 </html>

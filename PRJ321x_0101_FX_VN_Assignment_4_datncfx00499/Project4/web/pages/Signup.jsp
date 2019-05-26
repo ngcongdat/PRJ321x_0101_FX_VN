@@ -29,7 +29,10 @@
   <body>
 
     <% Users user = (Users) request.getAttribute("user");%>
-    
+
+    <%-- Include navigation bar --%>
+    <%@include file="../components/navbar.jsp" %>
+
     <%-- Signup form --%>
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
@@ -65,5 +68,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Include navigation bar -->
+    <%@include file="../components/footer.html" %>
+
   </body>
 </html>
