@@ -29,8 +29,8 @@
 
   <body onload="enableEditMode();">
     <% if (session.getAttribute("user") == null) {
-      response.sendRedirect("login");
-    } else { %>
+        response.sendRedirect("login");
+      } else { %>
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
         <div class="row">
@@ -92,16 +92,30 @@
             <button onclick="toggleEdit();">Lock Edit</button>
           </div>
         </div>
+
+        <!-- Form -->
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <form id="submitPost" method="post" action="controller">
               <input type="hidden" name="action" value="dopost" ></input>
               <div class="form-group mt-3 font-weight-bold">
                 <label for="title">Title</label>
-                <input type="text" name="title" value="" id="title" class="form-control"></input>
+                <input type="text" name="title" value="" id="title" class="form-control" required="required"></input>
+              </div>
+              <div class="form-group mt-3 font-weight-bold">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="" id="description" class="form-control" required="required"></input>
               </div>
               <div class="form-group">
+                <label for="category">Example select</label>
+                <select class="form-control" id="category" name="category">
+                  <option value="Java">Java</option>
+                  <option value="JavaScript">JavaScript</option>
+                </select>
+              </div>
+              <div class="form-group mt-3 font-weight-bold">
                 <input type="hidden" name="content"></input>
+                <label for="richTextField">Content</label>
                 <iframe class="form-control" name="richTextField" style="width: 100%; height: auto" id="richTextField"></iframe>
               </div>
             </form>

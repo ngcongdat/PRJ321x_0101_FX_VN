@@ -8,6 +8,7 @@ package com.controller;
 import com.bean.Users;
 import com.context.DBContext;
 import com.database.Account;
+import com.database.Posts;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -98,7 +99,18 @@ public class Controller extends HttpServlet {
       }
     } else if (action.equals("dopost")) {
       Users user = (Users) session.getAttribute("user");
-      System.out.println(user.getUsername());
+      String title = request.getParameter("title");
+      String desc = request.getParameter("description");
+      String category = request.getParameter("category");
+      String content = request.getParameter("content");
+      
+      Posts post = new Posts(conn);
+      try {
+        post.post(user, title, desc, category, content);
+        System.out.println("Post created");
+      } catch (SQLException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
     try {
