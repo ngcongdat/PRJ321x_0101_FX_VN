@@ -63,8 +63,28 @@ public class DBPosts {
     ps3.close();
   }
   
+  public Post viewPost(int postID) throws SQLException {
+    Post post = null;
+    DBUsers DBUser = new DBUsers(conn);
+    String sql = "select * from Posts where postID = ?";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    ps.setInt(1, postID);
+    ResultSet rs = ps.executeQuery();
+    if(rs.next()) {
+      String title = rs.getString("title");
+      String desc = rs.getString("description");
+      String content = rs.getString("content");
+      String category = DBUser.queryCategory(rs.getInt("category"));
+      String author = DBUser.queryUser(rs.getInt("user"));
+      Date dateCreate = rs.getDate("dateCreate");
+      post = new Post(postID, title, desc, content, category, author, dateCreate);
+    }
+    
+    return post;
+  }
+  
   // Query all posts in datebase
-  public List<Post> showPost() throws SQLException {
+  public List<Post> showAllPosts() throws SQLException {
     List<Post> posts = new ArrayList<Post>();
     DBUsers DBUser = new DBUsers(conn);
     String sql = "select * from Posts";
@@ -72,13 +92,14 @@ public class DBPosts {
     
     ResultSet rs = ps.executeQuery();
     while(rs.next()) {
+        int postID = rs.getInt("postID");
       String title = rs.getString("title");
       String desc = rs.getString("description");
       String content = rs.getString("content");
       String category = DBUser.queryCategory(rs.getInt("category"));
       String author = DBUser.queryUser(rs.getInt("user"));
       Date dateCreate = rs.getDate("dateCreate");
-      posts.add(new Post(title, desc, content, category, author, dateCreate));
+      posts.add(new Post(postID, title, desc, content, category, author, dateCreate));
     }
     
     return posts;

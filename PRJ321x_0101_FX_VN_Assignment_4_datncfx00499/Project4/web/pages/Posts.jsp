@@ -44,7 +44,7 @@
       }
 
       DBPosts DBPost = new DBPosts(conn);
-      List<Post> posts = DBPost.showPost();
+      List<Post> posts = DBPost.showAllPosts();
     %>
 
     <%-- Include navigation bar --%>
@@ -58,18 +58,28 @@
           %>
           <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
-              <a href="/Project4/posts?p=<%=p.getTitle()%>" class="font-weight-bold text-dark text-decoration-none post-title"><%= p.getTitle()%></a>
+              <a href="/Project4/posts?p=<%=p.getTitle()%>&id=<%=p.getPostID()%>" class="font-weight-bold text-dark text-decoration-none post-title"><%= p.getTitle()%></a>
               <div class="pb-3 text-secondary">
                 <span><%= p.getDateCreate()%></span>
                 <span>By <%=p.getAuthor()%></span>
               </div>
               <p class="text-secondary"><%= p.getDesc()%></p>
-              <a class="btn btn-primary" href="/Project4/posts?p=<%=p.getTitle()%>">Read more</a>
+              <a class="btn btn-primary" href="/Project4/posts?p=<%=p.getTitle()%>&id=<%=p.getPostID()%>">Read more</a>
             </div>
           </div>
           <% } %>
         </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3 side-bar-area">AA</div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 side-bar-area">
+          <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3">
+              <form>
+                <div class="form-group m-0">
+                  <input type="text" name="title" value="" placeholder="Search" class="form-control"/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

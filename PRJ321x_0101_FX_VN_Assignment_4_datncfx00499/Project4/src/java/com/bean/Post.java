@@ -14,6 +14,7 @@ import java.sql.Date;
  */
 public class Post {
   
+  private int postID;
   private String title;
   private String desc;
   private String content;
@@ -24,12 +25,21 @@ public class Post {
   public Post() {
   }
 
-  public Post(String title, String desc, String content, String category, String author, Date dateCreate) {
+  public Post(int postID, String title, String desc, String content, String category, String author, Date dateCreate) {
+    this.postID = postID;
     this.title = title;
     this.desc = desc;
     this.content = content;
     this.author = author;
     this.dateCreate = dateCreate;
+  }
+
+  public int getPostID() {
+    return postID;
+  }
+
+  public void setPostID(int postID) {
+    this.postID = postID;
   }
 
   public String getTitle() {
