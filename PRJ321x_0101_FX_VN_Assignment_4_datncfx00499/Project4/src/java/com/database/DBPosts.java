@@ -5,25 +5,30 @@
  */
 package com.database;
 
+import com.bean.Post;
 import com.bean.Users;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author tiny
  */
-public class Posts {
+public class DBPosts {
   
   private Connection conn;
 
-  public Posts(Connection conn) {
+  public DBPosts(Connection conn) {
     this.conn = conn;
   }
   
-  public void post(Users user, String title, String desc, String category, String content) throws SQLException {
+  // Create new post and insert to database
+  public void createPost(Users user, String title, String desc, String category, String content) throws SQLException {
     int userID = 0;
     int categoryID = 0;
     
@@ -56,6 +61,27 @@ public class Posts {
     
     ps3.executeUpdate();
     ps3.close();
+  }
+  
+  // Query all posts in datebase
+  public List<Post> showPost() throws SQLException {
+    List<Post> posts = new ArrayList<Post>();
+    DBUsers DBUser = new DBUsers(conn);
+    String sql = "select * from Posts";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()) {
+      String title = rs.getString("title");
+      String desc = rs.getString("description");
+      String content = rs.getString("content");
+      String category = DBUser.queryCategory(rs.getInt("category"));
+      String author = DBUser.queryUser(rs.getInt("user"));
+      Date dateCreate = rs.getDate("dateCreate");
+      posts.add(new Post(title, desc, content, category, author, dateCreate));
+    }
+    
+    return posts;
   }
   
 }

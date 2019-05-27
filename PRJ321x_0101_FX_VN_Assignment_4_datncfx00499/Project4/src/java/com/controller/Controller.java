@@ -8,7 +8,7 @@ package com.controller;
 import com.bean.Users;
 import com.context.DBContext;
 import com.database.Account;
-import com.database.Posts;
+import com.database.DBPosts;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -104,9 +104,9 @@ public class Controller extends HttpServlet {
       String category = request.getParameter("category");
       String content = request.getParameter("content");
       
-      Posts post = new Posts(conn);
+      DBPosts post = new DBPosts(conn);
       try {
-        post.post(user, title, desc, category, content);
+        post.createPost(user, title, desc, category, content);
         System.out.println("Post created");
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
