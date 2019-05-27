@@ -27,6 +27,19 @@ import javax.servlet.http.HttpSession;
 public class Controller extends HttpServlet {
 
   @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String action = request.getParameter("action");
+    HttpSession session = request.getSession();
+    if(action.equals("dologout")) {
+      session.invalidate();
+      response.sendRedirect("blogs");
+    }
+    
+  }
+  
+  
+
+  @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
@@ -123,8 +136,7 @@ public class Controller extends HttpServlet {
      * Clean session and log out
      */
     else {
-      session.invalidate();
-      response.sendRedirect("blogs");
+      
     }
 
     try {
