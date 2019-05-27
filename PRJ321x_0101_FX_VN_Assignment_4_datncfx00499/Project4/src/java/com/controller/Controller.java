@@ -97,13 +97,19 @@ public class Controller extends HttpServlet {
           Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
-    } else if (action.equals("dopost")) {
+
+    } /**
+     * Create Post Process
+     *
+     * Create new post and insert into database
+     */
+    else if (action.equals("dopost")) {
       Users user = (Users) session.getAttribute("user");
       String title = request.getParameter("title");
       String desc = request.getParameter("description");
       String category = request.getParameter("category");
       String content = request.getParameter("content");
-      
+
       DBPosts post = new DBPosts(conn);
       try {
         post.createPost(user, title, desc, category, content);
@@ -111,7 +117,12 @@ public class Controller extends HttpServlet {
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
-    } else {
+    } /**
+     * Log out Process
+     *
+     * Clean session and log out
+     */
+    else {
       session.invalidate();
       response.sendRedirect("blogs");
     }

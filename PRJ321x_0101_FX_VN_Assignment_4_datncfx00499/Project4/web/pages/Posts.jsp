@@ -32,8 +32,8 @@
 
   </head>
   <body>
-    
-    
+
+
     <%
       Connection conn = null;
       try {
@@ -46,23 +46,30 @@
       DBPosts DBPost = new DBPosts(conn);
       List<Post> posts = DBPost.showPost();
     %>
-    
+
     <%-- Include navigation bar --%>
     <%@include file="../components/navbar.jsp" %>
 
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-          <div class="row">
-            <%
-              for (Post p : posts) {
-            %>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12" style="background-color: #bbb"><%=p.getTitle()%></div>
-            <p><%=p.getDateCreate()%></p>
-            <% } %>
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9 content-area">
+          <%
+            for (Post p : posts) {
+          %>
+          <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
+              <a href="/Project4/posts?p=<%=p.getTitle()%>" class="font-weight-bold text-dark text-decoration-none post-title"><%= p.getTitle()%></a>
+              <div class="pb-3 text-secondary">
+                <span><%= p.getDateCreate()%></span>
+                <span>By <%=p.getAuthor()%></span>
+              </div>
+              <p class="text-secondary"><%= p.getDesc()%></p>
+              <a class="btn btn-primary" href="/Project4/posts?p=<%=p.getTitle()%>">Read more</a>
+            </div>
           </div>
+          <% } %>
         </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">AA</div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-3 mb-3 side-bar-area">AA</div>
       </div>
     </div>
 
@@ -73,9 +80,9 @@
         return;
       }
     %>
-    
+
     <%-- Include navigation bar --%>
     <%@include file="../components/footer.html" %>
-    
+
   </body>
 </html>

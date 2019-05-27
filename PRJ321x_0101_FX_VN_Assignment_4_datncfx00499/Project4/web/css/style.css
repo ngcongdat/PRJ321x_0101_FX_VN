@@ -1,1 +1,16 @@
+body {
+  box-sizing: border-box;
+}
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+.btn-primary {
+  background-color: #7DBBC3 !important;
+  border-color: #7DBBC3 !important;
+}
+
+.content-area .content-row .post-box .post-title {
+  font-size: 1.8rem;
+}

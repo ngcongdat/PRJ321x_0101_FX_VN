@@ -5,10 +5,7 @@
  */
 package com.controller;
 
-import com.context.DBContext;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,36 +15,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiny
  */
-public class Controller extends HttpServlet {
+public class PostController extends HttpServlet {
 
-  
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    
-    
+    String postTitle = request.getParameter("p");
+    if(postTitle == null) {
+      response.sendRedirect("home");
+    }
   }
-
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    Connection conn = null;
-    try {
-      conn = new DBContext().getConnection();
-    } catch (Exception ex) {
-      response.getWriter().println(ex.toString());
-      return;
-    }
-
-    response.getWriter().println("Connect database success");
-
-    try {
-      conn.close();
-    } catch (SQLException ex) {
-      response.getWriter().println(ex.toString());
-      return;
-    }
   }
 
 }

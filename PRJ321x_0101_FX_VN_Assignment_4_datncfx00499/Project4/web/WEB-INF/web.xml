@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-  
-  <welcome-file-list>
-    <welcome-file>/pages/Posts.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <resource-ref>
-    <description>DB Connection</description>
-    <res-ref-name>jdbc/myblog</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  
-  <!-- Servlet Mapping -->
-  <servlet>
-    <servlet-name>Controller</servlet-name>
-    <servlet-class>com.controller.Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Controller</servlet-name>
-    <url-pattern>/controller</url-pattern>
-  </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>/pages/Posts.jsp</welcome-file>
+    </welcome-file-list>
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/myblog</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+    <!-- Servlet Mapping -->
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.controller.Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PostController</servlet-name>
+        <servlet-class>com.controller.PostController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostController</servlet-name>
+        <url-pattern>/posts</url-pattern>
+    </servlet-mapping>
+    <!-- JSP Mapping -->
+    <servlet>
+        <servlet-name>PostDetailJSP</servlet-name>
+        <jsp-file>/pages/PostDetail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostDetailJSP</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PostsJSP</servlet-name>
+        <jsp-file>/pages/Posts.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostsJSP</servlet-name>
+        <url-pattern>/blogs</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginJSP</servlet-name>
+        <jsp-file>/pages/Login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginJSP</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SignupJSP</servlet-name>
+        <jsp-file>/pages/Signup.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignupJSP</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CreatePostJSP</servlet-name>
+        <jsp-file>/pages/CreatePost.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreatePostJSP</servlet-name>
+        <url-pattern>/createpost</url-pattern>
+    </servlet-mapping>
+    <!-- Session config time out -->
     
-  <!-- JSP Mapping -->
-  <servlet>
-    <servlet-name>PostDetailJSP</servlet-name>
-    <jsp-file>/pages/PostDetail.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PostDetailJSP</servlet-name>
-    <url-pattern>/post</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>PostsJSP</servlet-name>
-    <jsp-file>/pages/Posts.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PostsJSP</servlet-name>
-    <url-pattern>/blogs</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>LoginJSP</servlet-name>
-    <jsp-file>/pages/Login.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginJSP</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>SignupJSP</servlet-name>
-    <jsp-file>/pages/Signup.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SignupJSP</servlet-name>
-    <url-pattern>/signup</url-pattern>
-  </servlet-mapping>
-     
-  <servlet>
-    <servlet-name>CreatePostJSP</servlet-name>
-    <jsp-file>/pages/CreatePost.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreatePostJSP</servlet-name>
-    <url-pattern>/createpost</url-pattern>
-  </servlet-mapping>
-  
-  <!-- Session config time out --> 
-  <session-config>
-    <session-timeout>
+    <session-config>
+        <session-timeout>
       30
     </session-timeout>
-  </session-config>
+    </session-config>
 </web-app>
