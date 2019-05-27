@@ -4,6 +4,7 @@
     Author     : tiny
 --%>
 
+<%@page import="com.bean.Users"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bean.Post"%>
 <%@page import="com.database.DBPosts"%>
@@ -35,6 +36,7 @@
 
 
     <%
+      Users user = (Users) session.getAttribute("user");
       Connection conn = null;
       try {
         conn = new DBContext().getConnection();
@@ -58,13 +60,20 @@
           %>
           <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
-              <a href="/Project4/posts?p=<%=p.getTitle()%>&id=<%=p.getPostID()%>" class="font-weight-bold text-dark text-decoration-none post-title"><%= p.getTitle()%></a>
+              <a href="/Project4/posts?action=viewpost&p=<%=p.getTitle()%>&id=<%=p.getPostID()%>" class="font-weight-bold text-dark text-decoration-none post-title"><%= p.getTitle()%></a>
               <div class="pb-3 text-secondary">
                 <span><%= p.getDateCreate()%></span>
                 <span>By <%=p.getAuthor()%></span>
+                <%if (user != null) {
+                    if (user.getUsername().equals(p.getAuthor())) {
+                %>
+                <span> - </span>
+                <span><a href="/Project4/posts?action=editpost&id=<%=p.getPostID()%>" class="text-decoration-none text-secondary btn-edit">Edit</a></span>
+                <% }
+                  }%>
               </div>
               <p class="text-secondary"><%= p.getDesc()%></p>
-              <a class="btn btn-primary" href="/Project4/posts?p=<%=p.getTitle()%>&id=<%=p.getPostID()%>">Read more</a>
+              <a class="btn btn-primary" href="/Project4/posts?action=viewpost&p=<%=p.getTitle()%>&id=<%=p.getPostID()%>">Read more</a>
             </div>
           </div>
           <% } %>

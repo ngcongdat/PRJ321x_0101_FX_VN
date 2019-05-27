@@ -27,19 +27,22 @@ public class PostController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String postID = request.getParameter("id");
-    System.out.println(postID);
-    if (postID == null) {
+    String action = request.getParameter("action");
+    if (action == null) {
       response.sendRedirect("home");
-    } else {
-      Connection conn = null;
-      try {
-        conn = new DBContext().getConnection();
-      } catch (Exception ex) {
-        response.getWriter().println(ex.toString());
-        return;
-      }
-      
+    }
+
+    Connection conn = null;
+    String postID = request.getParameter("id");
+
+    try {
+      conn = new DBContext().getConnection();
+    } catch (Exception ex) {
+      response.getWriter().println(ex.toString());
+      return;
+    }
+
+    if (action.equals("viewpost")) {
       DBPosts DBPost = new DBPosts(conn);
       try {
         Post post = DBPost.viewPost(Integer.parseInt(postID));
@@ -48,17 +51,25 @@ public class PostController extends HttpServlet {
       } catch (SQLException ex) {
         Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
       }
-              
-              
+    } else if (action.equals("editpost")) {
+      DBPosts DBPost = new DBPosts(conn);
       try {
-        conn.close();
+        Post post = DBPost.viewPost(Integer.parseInt(postID));
+        request.setAttribute("post", post);
+        request.getRequestDispatcher("editpost").forward(request, response);
       } catch (SQLException ex) {
-        response.getWriter().println(ex.toString());
-        return;
+        Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
       }
+
+    }
+
+    try {
+      conn.close();
+    } catch (SQLException ex) {
+      response.getWriter().println(ex.toString());
+      return;
     }
   }
-  
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)

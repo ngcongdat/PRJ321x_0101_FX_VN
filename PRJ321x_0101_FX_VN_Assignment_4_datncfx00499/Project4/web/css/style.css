@@ -14,3 +14,12 @@ h1, h2, h3, h4, h5, h6 {
 .content-area .content-row .post-box .post-title {
   font-size: 1.8rem;
 }
+
+.content-area .content-row .post-box .btn-edit:hover {
+  color: #8BB174;
+  
+}
+
+.nav li:hover {
+  background-color: #8BB174;
+}

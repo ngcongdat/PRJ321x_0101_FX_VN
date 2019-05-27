@@ -30,14 +30,12 @@ public class Controller extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String action = request.getParameter("action");
     HttpSession session = request.getSession();
-    if(action.equals("dologout")) {
+    if (action.equals("dologout")) {
       session.invalidate();
       response.sendRedirect("blogs");
     }
-    
+
   }
-  
-  
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -126,17 +124,29 @@ public class Controller extends HttpServlet {
       DBPosts post = new DBPosts(conn);
       try {
         post.createPost(user, title, desc, category, content);
-        System.out.println("Post created");
+        response.sendRedirect("blogs");
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
     } /**
-     * Log out Process
+     * Edit Post Process
      *
-     * Clean session and log out
+     * Edit a post and update database
      */
-    else {
-      
+    else if (action.equals("editpost")) {
+      Users user = (Users) session.getAttribute("user");
+      String title = request.getParameter("title");
+      String desc = request.getParameter("description");
+      String category = request.getParameter("category");
+      String content = request.getParameter("content");
+
+      DBPosts post = new DBPosts(conn);
+      try {
+        post.editPost(user, title, desc, category, content);
+        response.sendRedirect("blogs");
+      } catch (SQLException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
     try {

@@ -9,7 +9,11 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
+    <title>Navigation Bar</title>
+    
+    <%-- Customize CSS --%>
+    <link rel="stylesheet" href="./css/style.css">
+    
   </head>
   <body>
      <%
@@ -29,6 +33,12 @@
     <ul class="nav justify-content-center navbar navbar-light" style="background-color: #7DBBC3; font-family: 'Roboto Mono', monospace;">
       <li class="nav-item">
         <a class="nav-link text-white font-weight-bold" href="blogs">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-bold" href="createpost">Write</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white font-weight-bold" href="#">My Posts</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white font-weight-bold" href="controller?action=dologout">Logout</a>

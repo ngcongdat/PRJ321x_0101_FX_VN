@@ -67,6 +67,14 @@
         <servlet-name>CreatePostJSP</servlet-name>
         <url-pattern>/createpost</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>EditPostJSP</servlet-name>
+        <jsp-file>/pages/EditPost.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditPostJSP</servlet-name>
+        <url-pattern>/editpost</url-pattern>
+    </servlet-mapping>
     <!-- Session config time out -->
     
     <session-config>

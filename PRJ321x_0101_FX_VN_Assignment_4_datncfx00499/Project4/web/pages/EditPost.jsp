@@ -1,15 +1,28 @@
 <%-- 
-    Document   : CreatePost
-    Created on : May 25, 2019, 7:27:18 AM
+    Document   : EditPost
+    Created on : May 27, 2019, 8:32:45 PM
     Author     : tiny
 --%>
 
+<%@page import="com.bean.Users"%>
+<%@page import="com.bean.Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+  Users user = (Users) session.getAttribute("user");
+  if (user == null) {
+    response.sendRedirect("blogs");
+  } else {
+    Post post = (Post) request.getAttribute("post");
+    String content = post.getContent().replace("\'", "\"");
+    System.out.println(content);
+%>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Create New Post</title>
+    <title>Edit Post | <%=post.getTitle()%></title>
 
     <%-- Meta tags --%>
     <meta charset="utf-8">
@@ -28,15 +41,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
   </head>
-
   <body onload="enableEditMode();">
 
     <%-- Include navigation bar --%>
     <%@include file="../components/navbar.jsp" %>
 
-    <% if (session.getAttribute("user") == null) {
-        response.sendRedirect("login");
-      } else { %>
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
         <div class="row">
@@ -102,15 +111,15 @@
         <!-- Form -->
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <form id="submitPost" method="post" action="controller">
-              <input type="hidden" name="action" value="dopost" ></input>
+            <form id="editPost" method="post" action="controller">
+              <input type="hidden" name="action" value="editpost" ></input>
               <div class="form-group mt-3 font-weight-bold">
                 <label for="title">Title</label>
-                <input type="text" name="title" value="" id="title" class="form-control" required="required"></input>
+                <input type="text" name="title" value="<%= post.getTitle()%>" id="title" class="form-control" required="required"></input>
               </div>
               <div class="form-group mt-3 font-weight-bold">
                 <label for="description">Description</label>
-                <input type="text" name="description" value="" id="description" class="form-control" required="required"></input>
+                <input type="text" name="description" value="<%= post.getDesc()%>" id="description" class="form-control" required="required"></input>
               </div>
               <div class="form-group">
                 <label for="category">Example select</label>
@@ -122,10 +131,10 @@
               <div class="form-group mt-3 font-weight-bold">
                 <input type="hidden" name="content"></input>
                 <label for="richTextField">Content</label>
-                <iframe class="form-control" name="richTextField" style="width: 100%; height: 450px" id="richTextField"></iframe>
+                <iframe class="form-control" name="richTextField" style="width: 100%; height: 450px" id="richTextField"  srcdoc='<%= content%>'></iframe>
               </div>
             </form>
-            <button onclick="post();" class="btn btn-primary">Submit</button>
+            <button onclick="edit();" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
@@ -170,14 +179,14 @@
         }
       }
 
-      function post() {
+      function edit() {
         var content = document.getElementById('richTextField').contentDocument.body.innerHTML || document.getElementById('richTextField').contentWindow.body.innerHTML;
-        var form = document.getElementById("submitPost");
+        var form = document.getElementById("editPost");
         form.elements['content'].value = content;
         form.submit();
       }
     </script>
 
-    <% }%>
   </body>
 </html>
+<% }%>

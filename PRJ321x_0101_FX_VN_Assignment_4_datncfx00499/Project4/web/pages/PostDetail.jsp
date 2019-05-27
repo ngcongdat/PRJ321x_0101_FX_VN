@@ -6,9 +6,9 @@
 
 <%@page import="com.bean.Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% Post post = (Post) request.getAttribute("post");%>
 
-<% if (post == null) {
+<% Post post = (Post) request.getAttribute("post");
+  if (post == null) {
     response.sendRedirect("blogs");
   } else {
 %>
