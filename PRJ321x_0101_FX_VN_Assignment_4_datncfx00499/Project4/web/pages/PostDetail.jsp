@@ -7,7 +7,7 @@
 <%@page import="com.bean.Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% 
+<%
   Post post = (Post) request.getAttribute("post");
   if (post == null) {
     response.sendRedirect("blogs");
@@ -43,15 +43,14 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-9 col-lg-9 content-area">
           <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow-sm rounded pt-3">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
               <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb pt-3">
                   <li class="breadcrumb-item"><a href="blogs" class="text-decoration-none">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page"><%= post.getTitle()%></li>
                 </ol>
               </nav>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded mt-3 pb-3 post-box">
               <h1><%= post.getTitle()%></h1>
               <div class="pb-3 text-secondary">
                 <span><%= post.getDateCreate()%></span>

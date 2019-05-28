@@ -55,11 +55,8 @@
       <div class="row">
 
         <div class="col-12 col-sm-12 col-md-9 col-lg-9 content-area">
-          <%
-            for (Post p : mPosts) {
-          %>
-          <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow-sm rounded pt-3">
+          <div class="row mt-3 mb-3 mr-2 ml-2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow-sm rounded pt-3 ">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="blogs" class="text-decoration-none">Home</a></li>
@@ -67,7 +64,13 @@
                 </ol>
               </nav>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded mt-3 pb-3 post-box">
+          </div>
+          <%
+            for (Post p : mPosts) {
+          %>
+          <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
               <a href="/Project4/posts?action=viewpost&p=<%=p.getTitle()%>&id=<%=p.getPostID()%>" class="font-weight-bold text-dark text-decoration-none post-title" style="font-family: 'Roboto Mono', monospace"><%= p.getTitle()%></a>
               <div class="pb-3 text-secondary">
                 <span><%= p.getDateCreate()%></span>

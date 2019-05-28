@@ -59,10 +59,12 @@
               <% if (user == null) { %>
               <h3>Hi Guest!</h3>
               <h3>Welcome to the broad!</h3>
-              <% } else {%>
+              <% } else {
+                int countPost = DBPost.countPost(user.getUsername());
+              %>
               <h3>Hi <%= user.getUsername()%></h3>
               <h3>Welcome back!</h3>
-              <p>You have <strong class="text-danger">${sessionScope.countPost}</strong> on website. Continue to write at <a href="createpost">here</a>?</p>
+              <p>You have <strong class="text-danger"><%= countPost%></strong> on website. Continue to write at <a href="createpost">here</a>?</p>
               <% }%>
             </div>
           </div>

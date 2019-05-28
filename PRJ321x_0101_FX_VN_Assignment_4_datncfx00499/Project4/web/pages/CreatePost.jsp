@@ -45,7 +45,7 @@
             <li class="breadcrumb-item active" aria-current="page">New Post</li>
           </ol>
         </nav>
-        <div class="row">
+        <div class="row sticky-top text-editor-icons">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <button onclick="execCmd('bold');" class="m-1"><i class="fas fa-bold m-1"></i></button>
             <button onclick="execCmd('italic');" class="m-1"><i class="fas fa-italic m-1"></i></button>
