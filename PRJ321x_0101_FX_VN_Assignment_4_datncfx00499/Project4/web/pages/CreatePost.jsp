@@ -134,6 +134,8 @@
     <%-- Include navigation bar --%>
     <%@include file="../components/footer.html" %>
 
+
+    <!-- Scripts text editor -->
     <script type="text/javascript">
       var showingSourceCode = false;
       var isInEditMode = true;

@@ -49,7 +49,7 @@ public class DBPosts {
       categoryID = rs2.getInt("categoryID");
     }
 
-    String insert = "insert into Posts(title, description, content, category, user, dateCreate) values (?, ?, ?, ?, ?, now(), null)";
+    String insert = "insert into Posts(title, description, content, category, user, dateCreate) values (?, ?, ?, ?, ?, now())";
     PreparedStatement ps3 = conn.prepareStatement(insert);
 
     ps3.setString(1, title);
@@ -62,6 +62,7 @@ public class DBPosts {
     ps3.close();
   }
 
+  // View a post in database
   public Post viewPost(int postID) throws SQLException {
     Post post = null;
     DBUsers DBUser = new DBUsers(conn);
@@ -80,13 +81,13 @@ public class DBPosts {
       Date dateUpdate = rs.getDate("dateUpdate");
       post = new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate);
     }
-
     return post;
   }
 
+  // Edit a post in database
   public void editPost(Users user, int postID, String title, String desc, String category, String content) throws SQLException {
     int categoryID = 1;
-    
+
     String getCategory = "select categoryID from Categories where title = ?";
     PreparedStatement ps = conn.prepareStatement(getCategory);
     ps.setString(1, category);
@@ -94,7 +95,7 @@ public class DBPosts {
     if (rs.next()) {
       categoryID = rs.getInt("categoryID");
     }
-    
+
     String update = "update Posts set title = ?, description = ?, content = ?, category = ?, dateUpdate = now() where postID = ?";
     PreparedStatement ps1 = conn.prepareStatement(update);
     ps1.setString(1, title);
@@ -104,6 +105,15 @@ public class DBPosts {
     ps1.setInt(5, postID);
     ps1.executeUpdate();
     ps1.close();
+  }
+
+  // Delete a post in database
+  public void deletePost(int postID) throws SQLException {
+    String delete = "delete from Posts where postID = ?";
+    PreparedStatement ps = conn.prepareStatement(delete);
+    ps.setInt(1, postID);
+    ps.executeUpdate();
+    ps.close();
   }
 
   // Query all posts in datebase
@@ -126,16 +136,16 @@ public class DBPosts {
       Date dateUpdate = rs.getDate("dateUpdate");
       posts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
     }
-    
     return posts;
   }
-  
+
+  // Query all posts of user in database
   public List<Post> showMyPosts(Users user) throws SQLException {
     int userID = 1;
     List<Post> mPosts = new ArrayList<Post>();
     DBUsers DBUser = new DBUsers(conn);
     DBCategory DBCategory = new DBCategory(conn);
-    
+
     String getUser = "select userID from Users where username = ?";
     PreparedStatement ps = conn.prepareStatement(getUser);
 
@@ -144,7 +154,7 @@ public class DBPosts {
     if (rs.next()) {
       userID = rs.getInt("userID");
     }
-    
+
     String sql = "select * from Posts where user = ? order by dateCreate desc";
     PreparedStatement ps1 = conn.prepareStatement(sql);
     ps1.setInt(1, userID);
@@ -160,7 +170,7 @@ public class DBPosts {
       Date dateUpdate = rs1.getDate("dateUpdate");
       mPosts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
     }
-    
+
     return mPosts;
   }
 

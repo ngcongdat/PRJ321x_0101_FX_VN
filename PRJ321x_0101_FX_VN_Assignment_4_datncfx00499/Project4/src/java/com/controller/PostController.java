@@ -35,6 +35,7 @@ public class PostController extends HttpServlet {
     Connection conn = null;
     String postID = request.getParameter("id");
 
+    // Connect to database
     try {
       conn = new DBContext().getConnection();
     } catch (Exception ex) {
@@ -42,6 +43,11 @@ public class PostController extends HttpServlet {
       return;
     }
 
+    /**
+     * View Post Process
+     *
+     * View a post of blog
+     */
     if (action.equals("viewpost")) {
       DBPosts DBPost = new DBPosts(conn);
       try {
@@ -51,12 +57,30 @@ public class PostController extends HttpServlet {
       } catch (SQLException ex) {
         Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
       }
-    } else if (action.equals("editpost")) {
+    } /**
+     * Edit Post Process
+     *
+     * Edit a post of blog
+     */
+    else if (action.equals("editpost")) {
       DBPosts DBPost = new DBPosts(conn);
       try {
         Post post = DBPost.viewPost(Integer.parseInt(postID));
         request.setAttribute("post", post);
         request.getRequestDispatcher("editpost").forward(request, response);
+      } catch (SQLException ex) {
+        Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } /**
+     * Delete Post Process
+     *
+     * Delete a post of blog
+     */
+    else if (action.equals("deletepost")) {
+      DBPosts DBPost = new DBPosts(conn);
+      try {
+        DBPost.deletePost(Integer.parseInt(postID));
+        response.sendRedirect("mypost");
       } catch (SQLException ex) {
         Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
       }
