@@ -5,6 +5,7 @@
  */
 package com.controller;
 
+import com.bean.Post;
 import com.bean.Users;
 import com.context.DBContext;
 import com.database.Account;
@@ -12,6 +13,7 @@ import com.database.DBPosts;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -140,13 +142,33 @@ public class Controller extends HttpServlet {
       String desc = request.getParameter("description");
       String category = request.getParameter("category");
       String content = request.getParameter("content");
-      
+
       DBPosts post = new DBPosts(conn);
       try {
         post.editPost(user, postID, title, desc, category, content);
         response.sendRedirect("blogs");
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } /**
+     * Search Post Process
+     *
+     * Search post in database
+     */
+    else if (action.equals("search")) {
+      String search = request.getParameter("search");
+      if (search.trim().equals("") || search == null) {
+        request.getRequestDispatcher("home").forward(request, response);
+      } else {
+        DBPosts post = new DBPosts(conn);
+        try {
+          List<Post> posts = post.searchPost(search);
+          request.setAttribute("post", posts);
+          request.getRequestDispatcher("search").forward(request, response);
+        } catch (SQLException ex) {
+          Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
       }
     }
 

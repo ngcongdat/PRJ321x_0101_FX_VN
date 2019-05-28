@@ -115,6 +115,31 @@ public class DBPosts {
     ps.executeUpdate();
     ps.close();
   }
+  
+  public List<Post> searchPost(String search) throws SQLException {
+    System.out.println(search);
+    List<Post> posts = new ArrayList<Post>();
+    DBUsers DBUser = new DBUsers(conn);
+    DBCategory DBCategory = new DBCategory(conn);
+    String sql = "select * from Posts where title like ? order by dateCreate desc";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    ps.setString(1, "%" + search + "%");
+    System.out.println(ps.toString());
+    ResultSet rs = ps.executeQuery();
+    
+    while (rs.next()) {
+      int postID = rs.getInt("postID");
+      String title = rs.getString("title");
+      String desc = rs.getString("description");
+      String content = rs.getString("content");
+      String category = DBCategory.queryCategory(rs.getInt("category"));
+      String author = DBUser.queryUser(rs.getInt("user"));
+      Date dateCreate = rs.getDate("dateCreate");
+      Date dateUpdate = rs.getDate("dateUpdate");
+      posts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
+    }
+    return posts;
+  }
 
   // Query all posts in datebase
   public List<Post> showAllPosts() throws SQLException {

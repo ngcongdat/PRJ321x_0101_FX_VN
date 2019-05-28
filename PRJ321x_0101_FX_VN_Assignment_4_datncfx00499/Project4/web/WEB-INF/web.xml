@@ -83,6 +83,14 @@
         <servlet-name>MyPostsJSP</servlet-name>
         <url-pattern>/mypost</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SearchPostJSP</servlet-name>
+        <jsp-file>/pages/SearchPost.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchPostJSP</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
     
     <!-- Session config time out -->
     <session-config>
