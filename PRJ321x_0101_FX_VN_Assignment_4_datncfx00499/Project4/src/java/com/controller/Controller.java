@@ -106,6 +106,7 @@ public class Controller extends HttpServlet {
             request.getRequestDispatcher("signup").forward(request, response);
           } else {
             account.create(username, password);
+            session.invalidate();
             request.getRequestDispatcher("login").forward(request, response);
           }
         } catch (SQLException ex) {
@@ -170,7 +171,7 @@ public class Controller extends HttpServlet {
         } catch (SQLException ex) {
           Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
       }
     }
 

@@ -7,13 +7,12 @@ package com.bean;
 
 import java.sql.Date;
 
-
 /**
  *
  * @author tiny
  */
 public class Post {
-  
+
   private int postID;
   private String title;
   private String desc;
@@ -99,5 +98,5 @@ public class Post {
   public void setDateUpdate(Date dateUpdate) {
     this.dateUpdate = dateUpdate;
   }
-  
+
 }

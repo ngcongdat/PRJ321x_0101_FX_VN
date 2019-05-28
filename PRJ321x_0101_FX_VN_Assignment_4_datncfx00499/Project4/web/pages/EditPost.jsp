@@ -15,7 +15,6 @@
   } else {
     Post post = (Post) request.getAttribute("post");
     String content = post.getContent().replace("\'", "\"");
-    System.out.println(content);
 %>
 
 <!DOCTYPE html>
@@ -154,6 +153,7 @@
     <%-- Include navigation bar --%>
     <%@include file="../components/footer.html" %>
 
+    <!-- Scripts text editor -->
     <script type="text/javascript">
       var showingSourceCode = false;
       var isInEditMode = true;

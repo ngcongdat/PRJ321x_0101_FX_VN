@@ -62,11 +62,10 @@
               <% } else {%>
               <h3>Hi <%= user.getUsername()%></h3>
               <h3>Welcome back!</h3>
-              <p>You have <strong class="text-danger">${sessionScope.countPost}</strong> on website. Continue to write <a href="createpost">here</a>?</p>
+              <p>You have <strong class="text-danger">${sessionScope.countPost}</strong> on website. Continue to write at <a href="createpost">here</a>?</p>
               <% }%>
             </div>
           </div>
-
           <%
             for (Post p : posts) {
           %>

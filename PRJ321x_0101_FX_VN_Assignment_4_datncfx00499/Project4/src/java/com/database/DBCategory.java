@@ -22,6 +22,7 @@ public class DBCategory {
     this.conn = conn;
   }
   
+  // Query and get category by categoryID
   public String queryCategory(int categoryID) throws SQLException {
     String category = "";
     String sql = "select title from Categories where categoryID = ?";

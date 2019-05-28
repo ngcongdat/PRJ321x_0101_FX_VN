@@ -50,7 +50,7 @@
               <input type="hidden" name="action" value="dosignup" />
               <div class="form-group">
                 <label for="username" class="font-weight-bold">Username</label>
-                <input type="text" class="form-control" id="username" required="required" name="username" value="">
+                <input type="text" class="form-control" id="username" required="required" name="username" value="" autofocus>
               </div>
               <div class="form-group">
                 <label for="password" class="font-weight-bold">Password</label> 

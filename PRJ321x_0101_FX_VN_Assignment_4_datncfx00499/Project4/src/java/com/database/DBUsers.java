@@ -22,6 +22,7 @@ public class DBUsers {
     this.conn = conn;
   }
 
+  // Query and get username by userID
   public String queryUser(int userID) throws SQLException {
     String username = "";
     String sql = "select username from Users where userID = ?";
@@ -35,6 +36,7 @@ public class DBUsers {
     return username;
   }
 
+  // Query and get userID by username
   public int queryUserID(String username) throws SQLException {
     int userID = 0;
     String sql = "select userID from Users where username = ?";

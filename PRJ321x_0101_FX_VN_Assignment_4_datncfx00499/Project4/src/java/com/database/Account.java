@@ -22,17 +22,15 @@ public class Account {
     this.conn = conn;
   }
 
+  // Find and check users when login
   public boolean login(String username, String password) throws SQLException {
 
+    int result = 0;
     String sql = "select count(*) from Users where username=? and password=?";
     PreparedStatement ps = conn.prepareStatement(sql);
-
     ps.setString(1, username);
     ps.setString(2, password);
-
     ResultSet rs = ps.executeQuery();
-
-    int result = 0;
 
     if (rs.next()) {
       result = rs.getInt("count(*)");
@@ -45,16 +43,14 @@ public class Account {
     }
   }
 
+  // Check user is exist in database
   public boolean exist(String username) throws SQLException {
 
+    int result = 0;
     String sql = "select count(*) from Users where username=?";
     PreparedStatement ps = conn.prepareStatement(sql);
-
     ps.setString(1, username);
-    
     ResultSet rs = ps.executeQuery();
-
-    int result = 0;
 
     if (rs.next()) {
       result = rs.getInt("count(*)");
@@ -66,17 +62,14 @@ public class Account {
       return false;
     }
   }
-  
+
+  // Create new user and insert into database
   public void create(String username, String password) throws SQLException {
-    
     String sql = "insert into Users (username, password) values (?, ?)";
     PreparedStatement ps = conn.prepareStatement(sql);
-    
     ps.setString(1, username);
     ps.setString(2, password);
-    
     ps.executeUpdate();
-    
     ps.close();
   }
 }

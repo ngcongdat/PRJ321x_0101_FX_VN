@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% if (session.getAttribute("user") != null) {
+    response.sendRedirect("blogs");
+  } else { %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,7 +31,7 @@
   </head>
   <body>
 
-    <% String error = (String) request.getAttribute("error"); %>
+    <% String error = (String) request.getAttribute("error");%>
 
     <%-- Include navigation bar --%>
     <%@include file="../components/navbar.jsp" %>
@@ -49,7 +53,7 @@
               <% }%>
               <div class="form-group">
                 <label for="username" class="font-weight-bold">Username</label>
-                <input type="text" class="form-control" id="username" required="required" name="username" value="">
+                <input type="text" class="form-control" id="username" required="required" name="username" value="" autofocus>
               </div>
               <div class="form-group">
                 <label for="password" class="font-weight-bold">Password</label> 
@@ -73,3 +77,4 @@
 
   </body>
 </html>
+<% }%>

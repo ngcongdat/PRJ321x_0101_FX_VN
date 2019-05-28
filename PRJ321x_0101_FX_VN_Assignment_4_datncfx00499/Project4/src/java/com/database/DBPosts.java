@@ -115,23 +115,24 @@ public class DBPosts {
     ps.executeUpdate();
     ps.close();
   }
-  
+
   public int countPost(String username) throws SQLException {
     int countPost = 0;
     DBUsers DBUser = new DBUsers(conn);
     int userID = DBUser.queryUserID(username);
-    
+
     String sql = "select count(*) from Posts where user = ?";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setInt(1, userID);
     ResultSet rs = ps.executeQuery();
-    
-    if(rs.next()) {
+
+    if (rs.next()) {
       countPost = rs.getInt("count(*)");
     }
     return countPost;
   }
-  
+
+  // Search posts
   public List<Post> searchPost(String search) throws SQLException {
     List<Post> posts = new ArrayList<Post>();
     DBUsers DBUser = new DBUsers(conn);
@@ -140,7 +141,7 @@ public class DBPosts {
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, "%" + search + "%");
     ResultSet rs = ps.executeQuery();
-    
+
     while (rs.next()) {
       int postID = rs.getInt("postID");
       String title = rs.getString("title");
