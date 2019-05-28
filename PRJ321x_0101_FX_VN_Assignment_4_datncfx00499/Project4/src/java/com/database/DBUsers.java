@@ -27,14 +27,25 @@ public class DBUsers {
     String sql = "select username from Users where userID = ?";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setInt(1, userID);
-
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
       username = rs.getString("username");
     }
-
     return username;
+  }
+
+  public int queryUserID(String username) throws SQLException {
+    int userID = 0;
+    String sql = "select userID from Users where username = ?";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    ps.setString(1, username);
+    ResultSet rs = ps.executeQuery();
+
+    if (rs.next()) {
+      userID = rs.getInt("userID");
+    }
+    return userID;
   }
 
 }

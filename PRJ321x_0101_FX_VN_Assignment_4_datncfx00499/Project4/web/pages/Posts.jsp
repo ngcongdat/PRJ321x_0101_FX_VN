@@ -54,6 +54,19 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-9 col-lg-9 content-area">
+          <div class="row mt-3 mb-3 mr-2 ml-2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 d-flex flex-column align-items-center justify-content-center">
+              <% if (user == null) { %>
+              <h3>Hi Guest!</h3>
+              <h3>Welcome to the broad!</h3>
+              <% } else {%>
+              <h3>Hi <%= user.getUsername()%></h3>
+              <h3>Welcome back!</h3>
+              <p>You have <strong class="text-danger">${sessionScope.countPost}</strong> on website. Continue to write <a href="createpost">here</a>?</p>
+              <% }%>
+            </div>
+          </div>
+
           <%
             for (Post p : posts) {
           %>

@@ -75,7 +75,9 @@ public class Controller extends HttpServlet {
       try {
         // Query user in database        
         if (account.login(username, password)) {
+          int countPost = new DBPosts(conn).countPost(username);
           session.setAttribute("user", user);
+          session.setAttribute("countPost", countPost);
           request.getRequestDispatcher("blogs").forward(request, response);
         } else {
           request.setAttribute("error", "Username or password is incorrect");

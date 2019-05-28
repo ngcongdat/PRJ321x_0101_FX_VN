@@ -48,6 +48,13 @@
 
     <div class="container-fluid mt-5 mb-5">
       <div class="container pt-5 pb-5 shadow rounded">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="blogs" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item">Edit Post</li>
+            <li class="breadcrumb-item active" aria-current="page"><%= post.getTitle()%></li>
+          </ol>
+        </nav>
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <button onclick="execCmd('bold');" class="m-1"><i class="fas fa-bold m-1"></i></button>

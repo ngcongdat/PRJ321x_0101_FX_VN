@@ -4,6 +4,7 @@
     Author     : tiny
 --%>
 
+<%@page import="com.bean.Users"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
