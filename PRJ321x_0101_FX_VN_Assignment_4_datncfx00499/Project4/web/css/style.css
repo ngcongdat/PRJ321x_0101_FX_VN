@@ -16,8 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-area .content-row .post-box .btn-edit:hover {
-  color: #8BB174;
-  
+  font-weight: bold;
 }
 
 .nav li:hover {

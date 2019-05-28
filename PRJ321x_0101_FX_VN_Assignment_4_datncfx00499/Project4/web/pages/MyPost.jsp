@@ -1,22 +1,22 @@
 <%-- 
-    Document   : Posts
-    Created on : May 22, 2019, 4:16:21 PM
+    Document   : MyPost
+    Created on : May 28, 2019, 2:57:41 PM
     Author     : tiny
 --%>
 
-<%@page import="com.bean.Users"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bean.Post"%>
 <%@page import="com.database.DBPosts"%>
-<%@page import="java.sql.SQLException"%>
 <%@page import="com.context.DBContext"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.bean.Users"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Blogs | Read news which you like</title>
+    <title>My Posts</title>
 
     <%-- Meta tags --%>
     <meta charset="utf-8">
@@ -34,7 +34,6 @@
   </head>
   <body>
 
-
     <%
       Users user = (Users) session.getAttribute("user");
       Connection conn = null;
@@ -46,7 +45,7 @@
       }
 
       DBPosts DBPost = new DBPosts(conn);
-      List<Post> posts = DBPost.showAllPosts();
+      List<Post> mPosts = DBPost.showMyPosts(user);
     %>
 
     <%-- Include navigation bar --%>
@@ -56,23 +55,17 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-9 col-lg-9 content-area">
           <%
-            for (Post p : posts) {
+            for (Post p : mPosts) {
           %>
           <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
               <a href="/Project4/posts?action=viewpost&p=<%=p.getTitle()%>&id=<%=p.getPostID()%>" class="font-weight-bold text-dark text-decoration-none post-title" style="font-family: 'Roboto Mono', monospace"><%= p.getTitle()%></a>
               <div class="pb-3 text-secondary">
                 <span><%= p.getDateCreate()%></span>
-                <span>By <%=p.getAuthor()%></span>
-                <%if (user != null) {
-                    if (user.getUsername().equals(p.getAuthor())) {
-                %>
                 <span> - </span>
-                <span class="btn-edit"><a href="/Project4/posts?action=editpost&id=<%=p.getPostID()%>" class="text-decoration-none text-secondary">Edit</a></span>
+                <span><a href="/Project4/posts?action=editpost&id=<%=p.getPostID()%>" class="text-decoration-none text-secondary btn-edit">Edit</a></span>
                 <span> - </span>
                 <span class="btn-edit"><a href="/Project4/posts?action=deletepost&id=<%=p.getPostID()%>" class="text-decoration-none text-secondary">Delete</a></span>
-                <% }
-                  }%>
               </div>
               <p class="text-secondary"><%= p.getDesc()%></p>
               <a class="btn btn-primary" href="/Project4/posts?action=viewpost&p=<%=p.getTitle()%>&id=<%=p.getPostID()%>">Read more</a>

@@ -65,6 +65,7 @@ public class DBPosts {
   public Post viewPost(int postID) throws SQLException {
     Post post = null;
     DBUsers DBUser = new DBUsers(conn);
+    DBCategory DBCategory = new DBCategory(conn);
     String sql = "select * from Posts where postID = ?";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setInt(1, postID);
@@ -73,7 +74,7 @@ public class DBPosts {
       String title = rs.getString("title");
       String desc = rs.getString("description");
       String content = rs.getString("content");
-      String category = DBUser.queryCategory(rs.getInt("category"));
+      String category = DBCategory.queryCategory(rs.getInt("category"));
       String author = DBUser.queryUser(rs.getInt("user"));
       Date dateCreate = rs.getDate("dateCreate");
       Date dateUpdate = rs.getDate("dateUpdate");
@@ -109,7 +110,8 @@ public class DBPosts {
   public List<Post> showAllPosts() throws SQLException {
     List<Post> posts = new ArrayList<Post>();
     DBUsers DBUser = new DBUsers(conn);
-    String sql = "select * from Posts";
+    DBCategory DBCategory = new DBCategory(conn);
+    String sql = "select * from Posts order by dateCreate desc";
     PreparedStatement ps = conn.prepareStatement(sql);
 
     ResultSet rs = ps.executeQuery();
@@ -118,14 +120,48 @@ public class DBPosts {
       String title = rs.getString("title");
       String desc = rs.getString("description");
       String content = rs.getString("content");
-      String category = DBUser.queryCategory(rs.getInt("category"));
+      String category = DBCategory.queryCategory(rs.getInt("category"));
       String author = DBUser.queryUser(rs.getInt("user"));
       Date dateCreate = rs.getDate("dateCreate");
       Date dateUpdate = rs.getDate("dateUpdate");
       posts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
     }
-
+    
     return posts;
+  }
+  
+  public List<Post> showMyPosts(Users user) throws SQLException {
+    int userID = 1;
+    List<Post> mPosts = new ArrayList<Post>();
+    DBUsers DBUser = new DBUsers(conn);
+    DBCategory DBCategory = new DBCategory(conn);
+    
+    String getUser = "select userID from Users where username = ?";
+    PreparedStatement ps = conn.prepareStatement(getUser);
+
+    ps.setString(1, user.getUsername());
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+      userID = rs.getInt("userID");
+    }
+    
+    String sql = "select * from Posts where user = ? order by dateCreate desc";
+    PreparedStatement ps1 = conn.prepareStatement(sql);
+    ps1.setInt(1, userID);
+    ResultSet rs1 = ps1.executeQuery();
+    while (rs1.next()) {
+      int postID = rs1.getInt("postID");
+      String title = rs1.getString("title");
+      String desc = rs1.getString("description");
+      String content = rs1.getString("content");
+      String category = DBCategory.queryCategory(rs1.getInt("category"));
+      String author = DBUser.queryUser(userID);
+      Date dateCreate = rs1.getDate("dateCreate");
+      Date dateUpdate = rs1.getDate("dateUpdate");
+      mPosts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
+    }
+    
+    return mPosts;
   }
 
 }

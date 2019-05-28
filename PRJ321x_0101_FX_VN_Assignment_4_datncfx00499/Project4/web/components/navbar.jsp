@@ -38,7 +38,7 @@
         <a class="nav-link text-white font-weight-bold" href="createpost">Write</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white font-weight-bold" href="#">My Posts</a>
+        <a class="nav-link text-white font-weight-bold" href="mypost">My Posts</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white font-weight-bold" href="controller?action=dologout">Logout</a>

@@ -14,27 +14,27 @@ import java.sql.SQLException;
  *
  * @author tiny
  */
-public class DBUsers {
-
+public class DBCategory {
+  
   private Connection conn;
-
-  public DBUsers(Connection conn) {
+  
+  public DBCategory(Connection conn) {
     this.conn = conn;
   }
-
-  public String queryUser(int userID) throws SQLException {
-    String username = "";
-    String sql = "select username from Users where userID = ?";
+  
+  public String queryCategory(int categoryID) throws SQLException {
+    String category = "";
+    String sql = "select title from Categories where categoryID = ?";
     PreparedStatement ps = conn.prepareStatement(sql);
-    ps.setInt(1, userID);
+    ps.setInt(1, categoryID);
 
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      username = rs.getString("username");
+      category = rs.getString("title");
     }
 
-    return username;
+    return category;
   }
-
+  
 }

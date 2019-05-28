@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS Posts(
    category INT NOT NULL,
    user INT NOT NULL,
    dateCreate DATETIME NOT NULL,
+   dateUpdate DATETIME,
    CONSTRAINT PK_PostID PRIMARY KEY (postID),
    CONSTRAINT FK_UserPost FOREIGN KEY (user) REFERENCES Users (userID),
    CONSTRAINT FK_PostCategory FOREIGN KEY (user) REFERENCES Users (userID)
