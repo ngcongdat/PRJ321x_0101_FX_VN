@@ -21,17 +21,19 @@ public class Post {
   private String category;
   private String author;
   private Date dateCreate;
+  private Date dateUpdate;
 
   public Post() {
   }
 
-  public Post(int postID, String title, String desc, String content, String category, String author, Date dateCreate) {
+  public Post(int postID, String title, String desc, String content, String category, String author, Date dateCreate, Date dateUpdate) {
     this.postID = postID;
     this.title = title;
     this.desc = desc;
     this.content = content;
     this.author = author;
     this.dateCreate = dateCreate;
+    this.dateUpdate = dateUpdate;
   }
 
   public int getPostID() {
@@ -88,6 +90,14 @@ public class Post {
 
   public void setDateCreate(Date dateCreate) {
     this.dateCreate = dateCreate;
+  }
+
+  public Date getDateUpdate() {
+    return dateUpdate;
+  }
+
+  public void setDateUpdate(Date dateUpdate) {
+    this.dateUpdate = dateUpdate;
   }
   
 }

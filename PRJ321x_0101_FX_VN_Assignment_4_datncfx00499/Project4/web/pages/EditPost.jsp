@@ -129,12 +129,16 @@
                 </select>
               </div>
               <div class="form-group mt-3 font-weight-bold">
+                <input type="hidden" name="postID" value="<%=post.getPostID()%>"></input>
                 <input type="hidden" name="content"></input>
                 <label for="richTextField">Content</label>
                 <iframe class="form-control" name="richTextField" style="width: 100%; height: 450px" id="richTextField"  srcdoc='<%= content%>'></iframe>
               </div>
             </form>
             <button onclick="edit();" class="btn btn-primary">Submit</button>
+            <div class="float-right">
+              <span>Published </span><input type="checkbox" disabled="true" checked="true"/>
+            </div>
           </div>
         </div>
       </div>

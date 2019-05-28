@@ -49,7 +49,7 @@ public class DBPosts {
       categoryID = rs2.getInt("categoryID");
     }
 
-    String insert = "insert into Posts(title, description, content, category, user, dateCreate) values (?, ?, ?, ?, ?, now())";
+    String insert = "insert into Posts(title, description, content, category, user, dateCreate) values (?, ?, ?, ?, ?, now(), null)";
     PreparedStatement ps3 = conn.prepareStatement(insert);
 
     ps3.setString(1, title);
@@ -76,14 +76,33 @@ public class DBPosts {
       String category = DBUser.queryCategory(rs.getInt("category"));
       String author = DBUser.queryUser(rs.getInt("user"));
       Date dateCreate = rs.getDate("dateCreate");
-      post = new Post(postID, title, desc, content, category, author, dateCreate);
+      Date dateUpdate = rs.getDate("dateUpdate");
+      post = new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate);
     }
 
     return post;
   }
 
-  public void editPost(Users user, String title, String desc, String category, String content) throws SQLException {
-
+  public void editPost(Users user, int postID, String title, String desc, String category, String content) throws SQLException {
+    int categoryID = 1;
+    
+    String getCategory = "select categoryID from Categories where title = ?";
+    PreparedStatement ps = conn.prepareStatement(getCategory);
+    ps.setString(1, category);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+      categoryID = rs.getInt("categoryID");
+    }
+    
+    String update = "update Posts set title = ?, description = ?, content = ?, category = ?, dateUpdate = now() where postID = ?";
+    PreparedStatement ps1 = conn.prepareStatement(update);
+    ps1.setString(1, title);
+    ps1.setString(2, desc);
+    ps1.setString(3, content);
+    ps1.setInt(4, categoryID);
+    ps1.setInt(5, postID);
+    ps1.executeUpdate();
+    ps1.close();
   }
 
   // Query all posts in datebase
@@ -102,7 +121,8 @@ public class DBPosts {
       String category = DBUser.queryCategory(rs.getInt("category"));
       String author = DBUser.queryUser(rs.getInt("user"));
       Date dateCreate = rs.getDate("dateCreate");
-      posts.add(new Post(postID, title, desc, content, category, author, dateCreate));
+      Date dateUpdate = rs.getDate("dateUpdate");
+      posts.add(new Post(postID, title, desc, content, category, author, dateCreate, dateUpdate));
     }
 
     return posts;

@@ -135,14 +135,15 @@ public class Controller extends HttpServlet {
      */
     else if (action.equals("editpost")) {
       Users user = (Users) session.getAttribute("user");
+      int postID = Integer.parseInt(request.getParameter("postID"));
       String title = request.getParameter("title");
       String desc = request.getParameter("description");
       String category = request.getParameter("category");
       String content = request.getParameter("content");
-
+      
       DBPosts post = new DBPosts(conn);
       try {
-        post.editPost(user, title, desc, category, content);
+        post.editPost(user, postID, title, desc, category, content);
         response.sendRedirect("blogs");
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
