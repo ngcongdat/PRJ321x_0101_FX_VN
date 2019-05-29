@@ -123,15 +123,21 @@ public class Controller extends HttpServlet {
       Users user = (Users) session.getAttribute("user");
       String title = request.getParameter("title");
       String desc = request.getParameter("description");
-      String category = request.getParameter("category");
-      String content = request.getParameter("content");
+      Post p = new Post(title, desc);
+      if (!p.validate(title, desc)) {
+        request.setAttribute("error", p.getError());
+        request.getRequestDispatcher("createpost").forward(request, response);
+      } else {
+        String category = request.getParameter("category");
+        String content = request.getParameter("content");
 
-      DBPosts post = new DBPosts(conn);
-      try {
-        post.createPost(user, title, desc, category, content);
-        response.sendRedirect("blogs");
-      } catch (SQLException ex) {
-        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        DBPosts post = new DBPosts(conn);
+        try {
+          post.createPost(user, title, desc, category, content);
+          response.sendRedirect("blogs");
+        } catch (SQLException ex) {
+          Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
       }
     } /**
      * Edit Post Process

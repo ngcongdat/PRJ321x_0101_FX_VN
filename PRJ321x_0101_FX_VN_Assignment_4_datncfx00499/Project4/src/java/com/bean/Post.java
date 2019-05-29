@@ -22,7 +22,14 @@ public class Post {
   private Date dateCreate;
   private Date dateUpdate;
 
+  private String error = "";
+
   public Post() {
+  }
+
+  public Post(String title, String desc) {
+    this.title = title;
+    this.desc = desc;
   }
 
   public Post(int postID, String title, String desc, String content, String category, String author, Date dateCreate, Date dateUpdate) {
@@ -97,6 +104,38 @@ public class Post {
 
   public void setDateUpdate(Date dateUpdate) {
     this.dateUpdate = dateUpdate;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public void setError(String error) {
+    this.error = error;
+  }
+
+  public boolean validate(String title, String desc) {
+
+    if (title == null || title.trim().equals("")) {
+      error = "Title must be required";
+      return false;
+    }
+
+    if (desc == null || desc.trim().equals("")) {
+      error = "Invalid password";
+      return false;
+    }
+    
+    if(title.length() > 255) {
+      error = "Title must be less than 255 characters";
+      return false;
+    }
+
+    if(desc.length() > 255) {
+      error = "Description must be less than 255 characters";
+      return false;
+    }
+    return true;
   }
 
 }

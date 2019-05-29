@@ -36,7 +36,9 @@
 
     <% if (session.getAttribute("user") == null) {
         response.sendRedirect("login");
-      } else { %>
+      } else { 
+      String error = (String) request.getAttribute("error");
+    %>
     <div class="container-fluid mt-5 mb-5 text-editor">
       <div class="container pt-5 pb-5 shadow rounded">
         <nav aria-label="breadcrumb">
@@ -114,8 +116,14 @@
         <!-- Form -->
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            
             <form id="submitPost" method="post" action="controller">
               <input type="hidden" name="action" value="dopost" ></input>
+              <% if (error != null) {%>
+              <div class="text-center pt-3">
+                <h3 class="text-danger"><%= request.getAttribute("error")%></h3>
+              </div>
+              <% }%>
               <div class="form-group mt-3 font-weight-bold">
                 <label for="title">Title</label>
                 <input type="text" name="title" value="" id="title" class="form-control" required="required"></input>
