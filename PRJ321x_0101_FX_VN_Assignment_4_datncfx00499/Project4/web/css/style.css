@@ -11,6 +11,10 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #7DBBC3 !important;
 }
 
+.text-editor .text-editor-icons {
+  background-color: #e9ecef;
+}
+
 .content-area .content-row .post-box .post-title {
   font-size: 1.8rem;
 }

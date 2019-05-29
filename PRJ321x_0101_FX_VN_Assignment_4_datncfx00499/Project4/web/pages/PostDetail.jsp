@@ -4,10 +4,12 @@
     Author     : tiny
 --%>
 
+<%@page import="com.bean.Users"%>
 <%@page import="com.bean.Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+  Users user = (Users) session.getAttribute("user");
   Post post = (Post) request.getAttribute("post");
   if (post == null) {
     response.sendRedirect("blogs");
@@ -55,6 +57,15 @@
               <div class="pb-3 text-secondary">
                 <span><%= post.getDateCreate()%></span>
                 <span>By <%=post.getAuthor()%></span>
+                <%if (user != null) {
+                    if (user.getUsername().equals(post.getAuthor())) {
+                %>
+                <span> - </span>
+                <span class="btn-edit"><a href="/Project4/posts?action=editpost&id=<%=post.getPostID()%>" class="text-decoration-none text-secondary">Edit</a></span>
+                <span> - </span>
+                <span class="btn-edit"><a href="/Project4/posts?action=deletepost&id=<%=post.getPostID()%>" class="text-decoration-none text-secondary">Delete</a></span>
+                <% }
+                  }%>
               </div>
               <div class="post-desc">
                 <p><%= post.getDesc()%></p>
@@ -67,13 +78,7 @@
         </div>
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 side-bar-area">
           <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3">
-              <form>
-                <div class="form-group m-0">
-                  <input type="text" name="title" value="" placeholder="Search" class="form-control"/>
-                </div>
-              </form>
-            </div>
+            <%@include file="../components/sidebar.jsp" %>
           </div>
         </div>
       </div>

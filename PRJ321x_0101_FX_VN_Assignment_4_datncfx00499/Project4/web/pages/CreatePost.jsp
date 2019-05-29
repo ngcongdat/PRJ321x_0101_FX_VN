@@ -37,7 +37,7 @@
     <% if (session.getAttribute("user") == null) {
         response.sendRedirect("login");
       } else { %>
-    <div class="container-fluid mt-5 mb-5">
+    <div class="container-fluid mt-5 mb-5 text-editor">
       <div class="container pt-5 pb-5 shadow rounded">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -45,63 +45,69 @@
             <li class="breadcrumb-item active" aria-current="page">New Post</li>
           </ol>
         </nav>
-        <div class="row sticky-top text-editor-icons">
+        <div class="row sticky-top">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <button onclick="execCmd('bold');" class="m-1"><i class="fas fa-bold m-1"></i></button>
-            <button onclick="execCmd('italic');" class="m-1"><i class="fas fa-italic m-1"></i></button>
-            <button onclick="execCmd('underline');" class="m-1"><i class="fas fa-underline m-1"></i></button>
-            <button onclick="execCmd('strikethrough');" class="m-1"><i class="fas fa-strikethrough m-1"></i></button>
-            <button onclick="execCmd('justifyLeft');" class="m-1"><i class="fas fa-align-left m-1"></i></button>
-            <button onclick="execCmd('justifyCenter');" class="m-1"><i class="fas fa-align-center m-1"></i></button>
-            <button onclick="execCmd('justifyRight');" class="m-1"><i class="fas fa-align-right m-1"></i></button>
-            <button onclick="execCmd('justifyFull');" class="m-1"><i class="fas fa-align-justify m-1"></i></button>
-            <button onclick="execCmd('cut');" class="m-1"><i class="fas fa-cut m-1"></i></button>
-            <button onclick="execCmd('copy');" class="m-1"><i class="fas fa-copy m-1"></i></button>
-            <button onclick="execCmd('indent');" class="m-1"><i class="fas fa-indent m-1"></i></button>
-            <button onclick="execCmd('outdent');" class="m-1"><i class="fas fa-outdent m-1"></i></button>
-            <button onclick="execCmd('subscript');" class="m-1"><i class="fas fa-subscript m-1"></i></button>
-            <button onclick="execCmd('superscript');" class="m-1"><i class="fas fa-superscript m-1"></i></button>
-            <button onclick="execCmd('undo');" class="m-1"><i class="fas fa-undo m-1"></i></button>
-            <button onclick="execCmd('redo');" class="m-1"><i class="fas fa-redo m-1"></i></button>
-            <button onclick="execCmd('insertUnorderedList');" class="m-1"><i class="fas fa-list-ul m-1"></i></button>
-            <button onclick="execCmd('insertOrderedList');" class="m-1"><i class="fas fa-list-ol m-1"></i></button>
-            <button onclick="execCmd('insertParagraph');" class="m-1"><i class="fas fa-paragraph m-1"></i></button>
-            <button onclick="execCmd('insertHorizontalRule');" class="">HR</button>
-            <button onclick="execCmdWithArg('createLink', prompt('Enter a URL:', 'http://'));" class="m-1"><i class="fas fa-link"></i></button>
-            <button onclick="execCmd('unlink');" class="m-1"><i class="fas fa-unlink m-1"></i></button>
+            <div class="text-editor-icons pb-2 pt-2 pl-1">
+              <button onclick="execCmd('bold');" class="m-1"><i class="fas fa-bold m-1"></i></button>
+              <button onclick="execCmd('italic');" class="m-1"><i class="fas fa-italic m-1"></i></button>
+              <button onclick="execCmd('underline');" class="m-1"><i class="fas fa-underline m-1"></i></button>
+              <button onclick="execCmd('strikethrough');" class="m-1"><i class="fas fa-strikethrough m-1"></i></button>
+              <button onclick="execCmd('justifyLeft');" class="m-1"><i class="fas fa-align-left m-1"></i></button>
+              <button onclick="execCmd('justifyCenter');" class="m-1"><i class="fas fa-align-center m-1"></i></button>
+              <button onclick="execCmd('justifyRight');" class="m-1"><i class="fas fa-align-right m-1"></i></button>
+              <button onclick="execCmd('justifyFull');" class="m-1"><i class="fas fa-align-justify m-1"></i></button>
+              <button onclick="execCmd('cut');" class="m-1"><i class="fas fa-cut m-1"></i></button>
+              <button onclick="execCmd('copy');" class="m-1"><i class="fas fa-copy m-1"></i></button>
+              <button onclick="execCmd('indent');" class="m-1"><i class="fas fa-indent m-1"></i></button>
+              <button onclick="execCmd('outdent');" class="m-1"><i class="fas fa-outdent m-1"></i></button>
+              <button onclick="execCmd('subscript');" class="m-1"><i class="fas fa-subscript m-1"></i></button>
+              <button onclick="execCmd('superscript');" class="m-1"><i class="fas fa-superscript m-1"></i></button>
+              <button onclick="execCmd('undo');" class="m-1"><i class="fas fa-undo m-1"></i></button>
+              <button onclick="execCmd('redo');" class="m-1"><i class="fas fa-redo m-1"></i></button>
+              <button onclick="execCmd('insertUnorderedList');" class="m-1"><i class="fas fa-list-ul m-1"></i></button>
+              <button onclick="execCmd('insertOrderedList');" class="m-1"><i class="fas fa-list-ol m-1"></i></button>
+              <button onclick="execCmd('insertParagraph');" class="m-1"><i class="fas fa-paragraph m-1"></i></button>
+              <button onclick="execCmd('insertHorizontalRule');" class="">HR</button>
+              <button onclick="execCmdWithArg('createLink', prompt('Enter a URL:', 'http://'));" class="m-1"><i class="fas fa-link"></i></button>
+              <button onclick="execCmd('unlink');" class="m-1"><i class="fas fa-unlink m-1"></i></button>
+            </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <select onchange="execCmdWithArg('formatBlock', this.value)" class="p-1">
-              <option value="H1">H1</option>
-              <option value="H2">H2</option>
-              <option value="H3">H3</option>
-              <option value="H4">H4</option>
-              <option value="H5">H5</option>
-              <option value="H6">H6</option>
-            </select>
-            <select onchange="execCmdWithArg('fontName', this.value)" class="p-1">
-              <option value="Time New Roman">Time New Roman</option>
-              <option value="Arial">Arial</option>
-              <option value="Comic Sans MS">Comic Sans MS</option>
-              <option value="Georgia">Georgia</option>
-              <option value="Courier">Courier</option>
-              <option value="Roboto">Roboto</option>
-            </select>
-            <select onchange="execCmdWithArg('fontSize', this.value)" class="p-1">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-            </select>
-            <input type="color" onchange="execCmdWithArg('foreColor', this.value)"/>
-            <input type="color" onchange="execCmdWithArg('hiliteColor', this.value)"/>
-            <button onclick="toggleSource();" class="m-1"><i class="fas fa-code m-1"></i></button>
-            <button onclick="execCmdWithArg('insertImage', prompt('Enter the image URL:', ''));" class="m-1"><i class="fa fa-file-alt m-1"></i></button>
-            <button onclick="execCmd('selectAll');">Select All</button>
-            <button onclick="toggleEdit();">Lock Edit</button>
+            <div class="text-editor-icons pb-2 pt-1 pl-2">
+              <select onchange="execCmdWithArg('formatBlock', this.value)" class="p-1">
+                <option value="H1">H1</option>
+                <option value="H2">H2</option>
+                <option value="H3">H3</option>
+                <option value="H4">H4</option>
+                <option value="H5">H5</option>
+                <option value="H6">H6</option>
+              </select>
+              <select onchange="execCmdWithArg('fontName', this.value)" class="p-1">
+                <option value="Time New Roman">Time New Roman</option>
+                <option value="Arial">Arial</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Courier">Courier</option>
+                <option value="Roboto">Roboto</option>
+              </select>
+              <select onchange="execCmdWithArg('fontSize', this.value)" class="p-1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+              </select>
+              <label>Text Color</label>
+              <input type="color" onchange="execCmdWithArg('foreColor', this.value)"/>
+              <label>Background Color</label>
+              <input type="color" onchange="execCmdWithArg('hiliteColor', this.value)"/>
+              <button onclick="toggleSource();" class="m-1"><i class="fas fa-code m-1"></i></button>
+              <button onclick="execCmdWithArg('insertImage', prompt('Enter the image URL:', ''));" class="m-1"><i class="fa fa-file-alt m-1"></i></button>
+              <button onclick="execCmd('selectAll');">Select All</button>
+              <button onclick="toggleEdit();">Lock Edit</button>
+            </div>
           </div>
         </div>
 
@@ -119,10 +125,14 @@
                 <input type="text" name="description" value="" id="description" class="form-control" required="required"></input>
               </div>
               <div class="form-group">
-                <label for="category">Example select</label>
+                <label for="category">Category</label>
                 <select class="form-control" id="category" name="category">
                   <option value="Java">Java</option>
                   <option value="JavaScript">JavaScript</option>
+                  <option value="NodeJS">NodeJS</option>
+                  <option value="React">React</option>
+                  <option value="Ruby">Ruby</option>
+                  <option value="Python">Python</option>
                 </select>
               </div>
               <div class="form-group mt-3 font-weight-bold">
