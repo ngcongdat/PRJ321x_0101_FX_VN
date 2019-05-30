@@ -9,3 +9,8 @@
 <c:import url="/components/NavBar.jsp">
   <c:param name="title" value="HomePage | Gmail SMTP Webapp"></c:param>
 </c:import>
+
+<c:import url="/components/Welcome.jsp"></c:import>
+
+
+<c:import url="/components/Footer.jsp"></c:import>
