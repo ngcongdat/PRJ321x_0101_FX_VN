@@ -6,33 +6,54 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="/components/NavBar.jsp">
-  <c:param name="title" value="HomePage | Gmail SMTP Webapp"></c:param>
-</c:import>
+<!DOCTYPE html>
+<html>
+  <head>
 
-<header class="home-header">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <c:choose>
-          <c:when test="${sessionScope.user == null}">
-            <h1 class="font-weight-light">Welcome Guest!</h1>
-            <p class="lead">We can help you send email via Gmail SMTP</p>
-            <span><a class="btn btn-primary" href="sign-in">Sign In</a></span>
-            <span class="pl-4 pr-4"></span>
-            <span><a class="btn btn-primary" href="sign-up">Sign Up</a></span>
-          </c:when>
-          <c:otherwise>
-            <h1 class="font-weight-light">Welcome back ${sessionScope.user.username}!</h1>
-            <p class="lead">How are you today?</p>
-            <a class="lead" href="compose">Send mail now</a>
-          </c:otherwise>
-        </c:choose>
+    <%-- Required meta tags --%>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>HomePage | Gmail SMTP WebApp</title>
 
+    <%-- Customize CSS --%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
+    <%-- Bootstrap CSS --%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <!--  Import navigation bar into pages  -->
+    <c:import url="/components/NavBar.jsp"/>
+
+      <header class="home-header">
+        <div class="container h-100">
+          <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+            <c:choose>
+              <c:when test="${sessionScope.user == null}">
+                <h1 class="font-weight-light">Welcome Guest!</h1>
+                <p class="lead">We can help you send email via Gmail SMTP</p>
+                <span><a class="btn btn-primary" href="sign-in">Sign In</a></span>
+                <span class="pl-4 pr-4"></span>
+                <span><a class="btn btn-primary" href="sign-up">Sign Up</a></span>
+              </c:when>
+              <c:otherwise>
+                <h1 class="font-weight-light">Welcome back ${sessionScope.user.username}!</h1>
+                <p class="lead">How are you today?</p>
+                <a class="lead" href="compose">Send mail now</a>
+              </c:otherwise>
+            </c:choose>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
+    </header>
 
+    <!--  Import navigation bar into pages  -->
+    <c:import url="/components/Footer.jsp"/>
 
-<c:import url="/components/Footer.jsp"></c:import>
+  </body>
+</html>

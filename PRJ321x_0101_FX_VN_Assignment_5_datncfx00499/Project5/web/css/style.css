@@ -8,7 +8,7 @@ body {
   height: 100%;
 }
 
-/* Home Header */
+/* Home Page */
 .home-header {
   height: 100vh;
   min-height: 500px;
@@ -18,7 +18,7 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Login Form */
+/* Sign In Page, Sign Up Page */
 .signin-signup {
   height: 100vh;
   min-height: 500px;
@@ -116,6 +116,12 @@ body {
   font-size: 12px;
   color: #777;
 }
+
+/* Compose Page */
+.text-editor {
+  margin-top: 120px;
+}
+
 
 /* Footer */
 #footer {

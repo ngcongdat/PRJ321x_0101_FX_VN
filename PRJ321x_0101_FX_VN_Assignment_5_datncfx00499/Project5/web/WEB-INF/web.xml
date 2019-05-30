@@ -37,6 +37,14 @@
     <servlet-name>SignUpJSP</servlet-name>
     <url-pattern>/sign-up</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ComposeJSP</servlet-name>
+    <jsp-file>/pages/Compose.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ComposeJSP</servlet-name>
+    <url-pattern>/compose</url-pattern>
+  </servlet-mapping>
   
   <!-- Session Config -->
   <session-config>
