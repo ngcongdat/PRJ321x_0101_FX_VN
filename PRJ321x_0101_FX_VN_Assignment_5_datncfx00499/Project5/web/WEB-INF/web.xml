@@ -21,6 +21,24 @@
     <servlet-name>HomeJSP</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>SignInJSP</servlet-name>
+    <jsp-file>/pages/SignIn.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignInJSP</servlet-name>
+    <url-pattern>/sign-in</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SignUpJSP</servlet-name>
+    <jsp-file>/pages/SignUp.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignUpJSP</servlet-name>
+    <url-pattern>/sign-up</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Session Config -->
   <session-config>
     <session-timeout>
       30
