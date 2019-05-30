@@ -31,13 +31,50 @@
     <c:import url="/components/NavBar.jsp"/>
 
     <div class="container-fluid mb-5 text-editor">
-      <div class="container pt-5 pb-5 shadow rounded">AAAA</div></div>
+      <div class="container pt-5 pb-5 shadow rounded">
+        <div id="toolbar"></div>
+        <div id="editor" style="height: 500px"></div>
+        <button id="save-delta">Save</button>
+      </div>
+    </div>
 
     <!--  Import navigation bar into pages  -->
     <c:import url="/components/Footer.jsp"/>
 
     <%-- Quill library --%>
     <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
-    
+
+    <!-- Initialize Quill editor -->
+    <script>
+
+      var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'], 
+        [{'align': []}],
+        [{'font': []}],
+        [{'size': ['small', false, 'large', 'huge']}], 
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'script': 'sub'}, {'script': 'super'}], 
+        [{'indent': '-1'}, {'indent': '+1'}], 
+        [{'direction': 'rtl'}], 
+        [{'color': []}, {'background': []}], 
+        ['link', 'image', 'video', 'formula'],
+        ['blockquote', 'code-block'],
+        ['clean']                                        
+      ];
+
+      var quill = new Quill('#editor', {
+        modules: {
+          toolbar: toolbarOptions
+        },
+        theme: 'snow'
+      });
+      
+      $('#save-delta').click(function () {
+        var delta = quill.getContents();
+        console.log(delta);
+      });
+    </script>
+
   </body>
 </html>
