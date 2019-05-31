@@ -75,14 +75,28 @@ public class Controller extends HttpServlet {
       User user = new User(email, username, password);
 
       try {
-        if (dbUser.login(username, password)) {
-          session.setAttribute("user", user);
-          request.getRequestDispatcher("home").forward(request, response);
+        if (dbUser.isExist(username)) {
+          if (dbUser.checkPassword(username, password)) {
+            session.setAttribute("user", user);
+            request.getRequestDispatcher("home").forward(request, response);
+          } else {
+            request.setAttribute("invalidPassword", "Password is incorrect");
+            request.getRequestDispatcher("sign-in").forward(request, response);
+          }
         } else {
-          request.setAttribute("errors", user.getErrors());
+          request.setAttribute("invalidUsername", "Username is not exists");
           request.getRequestDispatcher("sign-in").forward(request, response);
         }
+
+//        if (dbUser.login(username, password)) {
+//          session.setAttribute("user", user);
+//          request.getRequestDispatcher("home").forward(request, response);
+//        } else {
+//          request.setAttribute("errors", user.getErrors());
+//          request.getRequestDispatcher("sign-in").forward(request, response);
+//        }
       } catch (SQLException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         response.sendRedirect("error");
       }
     } /**
@@ -98,7 +112,7 @@ public class Controller extends HttpServlet {
           request.setAttribute("errors", user.getErrors());
           request.getRequestDispatcher("sign-up").forward(request, response);
         } else {
-          if (dbUser.isExists(username)) {
+          if (dbUser.isExist(username)) {
             request.setAttribute("errors", "Email or Username is exists");
             request.getRequestDispatcher("sign-up").forward(request, response);
           } else {

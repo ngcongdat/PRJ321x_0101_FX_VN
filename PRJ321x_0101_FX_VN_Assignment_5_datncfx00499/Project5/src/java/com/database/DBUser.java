@@ -23,7 +23,17 @@ public class DBUser {
     this.conn = conn;
   }
 
-  public boolean login(String username, String password) throws SQLException {
+  public void createUser(User user) throws SQLException {
+    String insert = "INSERT INTO Users (email, username, password) VALUES (?, ?, ?)";
+    PreparedStatement ps = conn.prepareStatement(insert);
+    ps.setString(1, user.getEmail());
+    ps.setString(2, user.getUsername());
+    ps.setString(3, user.getPassword());
+    ps.executeUpdate();
+    ps.close();
+  }
+  
+  public boolean isExist(String username) throws SQLException {
 
     int count = 0;
     String query = "SELECT count(*) FROM Users WHERE username = ?";
@@ -35,42 +45,30 @@ public class DBUser {
       count = rs.getInt("count(*)");
     }
 
-    if (count == 0) {
-      return false;
-    } else {
+    if (count != 0) {
       return true;
+    } else {
+      return false;
     }
 
   }
-  
-  public boolean isExists(String username) throws SQLException {
 
-    int count = 0;
-    String query = "SELECT count(*) FROM Users WHERE username = ?";
+  public boolean checkPassword(String username, String password) throws SQLException {
+    String query = "SELECT password FROM Users WHERE username = ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString(1, username);
     ResultSet rs = ps.executeQuery();
-
-    if (rs.next()) {
-      count = 1;
+    
+    String passwordInDatabase = "";
+    if(rs.next()) {
+      passwordInDatabase = rs.getString("password");
     }
 
-    if (count == 1) {
+    if (password.equals(passwordInDatabase)) {
       return true;
     } else {
       return false;
     }
-
-  }
-  
-  public void createUser(User user) throws SQLException {
-    String insert = "INSERT INTO Users (email, username, password) VALUES (?, ?, ?)";
-    PreparedStatement ps = conn.prepareStatement(insert);
-    ps.setString(1, user.getEmail());
-    ps.setString(2, user.getUsername());
-    ps.setString(3, user.getPassword());
-    ps.executeUpdate();
-    ps.close();
   }
 
   public int getUserID(String username) throws SQLException {

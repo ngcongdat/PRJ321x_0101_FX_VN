@@ -39,12 +39,35 @@
                 <form class="form-address" action="Controller" method="post">
                   <input type="hidden" name="action" value="signin">
                   <div class="form-label-group">
-                    <input type="text" name="username" value="" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-                    <label for="inputUsername">Username</label>
+                    <c:choose>
+                      <c:when test="${requestScope.invalidUsername != null}">
+                        <input type="text" name="username" value="" id="inputUsername" class="form-control is-invalid" placeholder="Username" required autofocus>
+                        <label for="inputUsername">Username</label>
+                        <div class="invalid-feedback text-center">
+                          ${requestScope.invalidUsername}
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <input type="text" name="username" value="" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputUsername">Username</label>
+                      </c:otherwise>
+                    </c:choose> 
                   </div>
+
                   <div class="form-label-group">
-                    <input type="password" name="password" value="" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <label for="inputPassword">Password</label>
+                    <c:choose>
+                      <c:when test="${requestScope.invalidPassword != null}">
+                        <input type="password" name="password" value="" id="inputPassword" class="form-control is-invalid" placeholder="Password" required>
+                        <label for="inputPassword">Password</label>
+                        <div class="invalid-feedback text-center">
+                          ${requestScope.invalidPassword}
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <input type="password" name="password" value="" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <label for="inputPassword">Password</label>
+                      </c:otherwise>
+                    </c:choose>
                   </div>
                   <hr class="my-4">
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
