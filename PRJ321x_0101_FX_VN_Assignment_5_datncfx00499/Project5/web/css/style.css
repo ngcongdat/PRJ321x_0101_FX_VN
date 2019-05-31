@@ -18,7 +18,7 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Sign In Page, Sign Up Page */
+/* Sign In Page, Sign Up Page, Compose Page */
 .signin-signup {
   height: 100vh;
   min-height: 500px;
@@ -26,33 +26,37 @@ body {
   background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 
-.card-signin-signup {
+.card-address{
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
-.card-signin-signup .card-title {
+.card-address .card-title {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
 }
 
-.card-signin-signup .card-body {
+.card-address .card-body {
   padding: 2rem;
 }
 
-.form-signin-signup {
+.form-address {
   width: 100%;
 }
 
-.form-signin-signup .btn {
+.form-address .btn, .text-editor .btn {
   font-size: 80%;
-  border-radius: 5rem;
+  border-radius: 5rem !important;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
+}
+
+.input-title {
+  text-transform: uppercase !important; 
 }
 
 .form-label-group {

@@ -32,9 +32,34 @@
 
     <div class="container-fluid mb-5 text-editor">
       <div class="container pt-5 pb-5 shadow rounded">
+        <div class="card card-address" style="border: none; box-shadow: none;">
+          <div class="card-body">
+            <form class="form-address" id="sendEmail" action="Controller" method="post">
+              <input type="hidden" name="action" value="sendEmail">
+              <!--<label for="inputToAdress" class="font-weight-bold input-title">To:</label>-->
+              <div class="form-label-group">
+                <input type="text" name="toaddress" value="" id="inputToAdress" class="form-control" placeholder="To:" required autofocus>
+                <label for="inputToAdress">To:</label>
+              </div>
+              <!--<label for="inputCCAddress" class="font-weight-bold input-title">CC:</label>-->
+              <div class="form-label-group">
+                <input type="text" name="ccaddress" value="" id="inputCCAddress" class="form-control" placeholder="CC:">
+                <label for="inputCCAddress">CC:</label>
+              </div>
+              <!--<label for="inputSubject" class="font-weight-bold input-title">Subject:</label>-->
+              <div class="form-label-group">
+                <input type="text" name="subject" value="" id="inputSubject" class="form-control" placeholder="Subject:" required>
+                <label for="inputSubject">Subject:</label>
+              </div>
+              <input type="hidden" name="content" value="">
+            </form>
+            <!--<label onclick="focusEditor();" class="font-weight-bold input-title">Content:</label>-->
+          </div>
+        </div>
         <div id="toolbar"></div>
         <div id="editor" style="height: 500px"></div>
-        <button id="save-delta">Save</button>
+        <hr class="my-4">
+        <button id="save-delta" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Send</button>
       </div>
     </div>
 
@@ -46,34 +71,41 @@
 
     <!-- Initialize Quill editor -->
     <script>
-
       var toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'], 
+        ['bold', 'italic', 'underline', 'strike'],
         [{'align': []}],
         [{'font': []}],
-        [{'size': ['small', false, 'large', 'huge']}], 
+        [{'size': ['small', false, 'large', 'huge']}],
         [{'header': [1, 2, 3, 4, 5, 6, false]}],
         [{'list': 'ordered'}, {'list': 'bullet'}],
-        [{'script': 'sub'}, {'script': 'super'}], 
-        [{'indent': '-1'}, {'indent': '+1'}], 
-        [{'direction': 'rtl'}], 
-        [{'color': []}, {'background': []}], 
+        [{'script': 'sub'}, {'script': 'super'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        [{'direction': 'rtl'}],
+        [{'color': []}, {'background': []}],
         ['link', 'image', 'video', 'formula'],
         ['blockquote', 'code-block'],
-        ['clean']                                        
+        ['clean']
       ];
 
       var quill = new Quill('#editor', {
         modules: {
           toolbar: toolbarOptions
         },
+        placeholder: "Write your content email...",
         theme: 'snow'
       });
-      
+
+      function focusEditor() {
+        quill.focus();
+      }
+
       $('#save-delta').click(function () {
-        var delta = quill.getContents();
-        console.log(delta);
+        var content = document.querySelector(".ql-editor").innerHTML;
+        var form = document.getElementById("sendEmail");
+        form.elements['content'].value = content;
+        form.submit();
       });
+
     </script>
 
   </body>
