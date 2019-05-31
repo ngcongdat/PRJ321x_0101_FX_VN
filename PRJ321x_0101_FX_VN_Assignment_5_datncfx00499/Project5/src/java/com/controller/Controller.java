@@ -11,6 +11,7 @@ import com.database.DBUser;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -75,7 +76,7 @@ public class Controller extends HttpServlet {
       User user = new User(email, username, password);
 
       try {
-        if (dbUser.isExist(username)) {
+        if (dbUser.isExistUsername(username)) {
           if (dbUser.checkPassword(username, password)) {
             session.setAttribute("user", user);
             request.getRequestDispatcher("home").forward(request, response);
@@ -87,14 +88,6 @@ public class Controller extends HttpServlet {
           request.setAttribute("invalidUsername", "Username is not exists");
           request.getRequestDispatcher("sign-in").forward(request, response);
         }
-
-//        if (dbUser.login(username, password)) {
-//          session.setAttribute("user", user);
-//          request.getRequestDispatcher("home").forward(request, response);
-//        } else {
-//          request.setAttribute("errors", user.getErrors());
-//          request.getRequestDispatcher("sign-in").forward(request, response);
-//        }
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         response.sendRedirect("error");
@@ -109,10 +102,19 @@ public class Controller extends HttpServlet {
 
       try {
         if (!user.validate(user)) {
-          request.setAttribute("errors", user.getErrors());
+          List<String> errors = user.getErrors();
+          for (String e : errors) {
+            if (e.equals("Invalid email!")) {
+              request.setAttribute("invalidEmail", e);
+            } else if (e.equals("Invalid username!")) {
+              request.setAttribute("invalidUsername", e);
+            } else {
+              request.setAttribute("invalidPassword", e);
+            }
+          }
           request.getRequestDispatcher("sign-up").forward(request, response);
         } else {
-          if (dbUser.isExist(username)) {
+          if (dbUser.isExistUsername(username)) {
             request.setAttribute("errors", "Email or Username is exists");
             request.getRequestDispatcher("sign-up").forward(request, response);
           } else {
@@ -123,6 +125,7 @@ public class Controller extends HttpServlet {
         }
       } catch (SQLException ex) {
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        response.sendRedirect("error");
       }
 
     }

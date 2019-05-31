@@ -33,7 +33,7 @@ public class DBUser {
     ps.close();
   }
   
-  public boolean isExist(String username) throws SQLException {
+  public boolean isExistUsername(String username) throws SQLException {
 
     int count = 0;
     String query = "SELECT count(*) FROM Users WHERE username = ?";
