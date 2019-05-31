@@ -40,7 +40,7 @@
                       <a class="nav-link" href="sent">Sent</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="logout">Log Out</a>
+                      <a class="nav-link" href="Controller?action=logout">Log Out</a>
                     </li>
                   </c:otherwise>
                 </c:choose>
