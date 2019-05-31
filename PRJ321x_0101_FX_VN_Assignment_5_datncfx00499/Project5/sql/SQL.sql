@@ -13,5 +13,12 @@ CREATE TABLE IF NOT EXISTS Users(
 INSERT INTO Users(email, username, password) VALUES ('ncd.ccpn@gmail.com', 'admin', 'admin');
 
 CREATE TABLE IF NOT EXISTS MyMail(
-
+	emailId INT AUTO_INCREMENT,
+    user INT NOT NULL,
+    toAddress VARCHAR(255),
+    ccAddress VARCHAR(255),
+    subject TINYTEXT,
+    content MEDIUMTEXT,
+    CONSTRAINT PK_EmailId PRIMARY KEY (emailId),
+    CONSTRAINT FK_UserMail FOREIGN KEY FK_User(user) REFERENCES Users(userId)
 );

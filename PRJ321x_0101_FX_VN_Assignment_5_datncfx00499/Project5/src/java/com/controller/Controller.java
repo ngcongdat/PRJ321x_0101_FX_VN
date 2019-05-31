@@ -5,7 +5,12 @@
  */
 package com.controller;
 
+import com.database.DBContext;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +26,11 @@ public class Controller extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
+//    String action = request.getParameter("action");
+//    if(action.equals("") || action == null) {
+      response.sendRedirect("home");
+//    }
+    
   }
 
   @Override
@@ -29,6 +39,28 @@ public class Controller extends HttpServlet {
     
     String action = request.getParameter("action");
   
+    if(action.equals("") || action == null) {
+      response.sendRedirect("home");
+    }
+    
+    Connection conn = null;
+    
+    try {
+      conn = new DBContext().getConnection();
+    } catch (Exception ex) {
+      Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      return;
+    }
+    
+    response.getWriter().println("Hello");
+    
+    try {
+      conn.close();
+    } catch (SQLException ex) {
+      Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      return;
+    }
+    
   }
 
 }
