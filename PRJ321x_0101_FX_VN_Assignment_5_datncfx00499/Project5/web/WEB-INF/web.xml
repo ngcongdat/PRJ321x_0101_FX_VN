@@ -54,6 +54,14 @@
     <url-pattern>/compose</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ErrorJSP</servlet-name>
+    <jsp-file>/pages/Error.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorJSP</servlet-name>
+    <url-pattern>/error</url-pattern>
+  </servlet-mapping>
   <!-- Session Config -->
   <session-config>
     <session-timeout>

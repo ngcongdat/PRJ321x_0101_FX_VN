@@ -25,9 +25,9 @@ public class User {
 
   private List<String> errors = new ArrayList<>();
 
-  private final String RULES_OF_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-  private final String RULES_OF_USERNAME = "^(\\w|_|-){6,}$";
-  private final String RULES_OF_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,}$";
+  private final String RULE_OF_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+  private final String RULE_OF_USERNAME = "^(\\w|_|-){6,}$";
+  private final String RULE_OF_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,}$";
 
   public User() {
   }
@@ -74,24 +74,42 @@ public class User {
 
     boolean isValid = true;
     
-    if (this.email.trim().equals("") || this.email == null) {
+//    if (this.email.trim().equals("") || this.email == null) {
+//      errors.add("Invalid email!");
+//      isValid = false;
+//    }
+//    if (this.username.trim().equals("") || this.username == null) {
+//      errors.add("Invalid username!");
+//      isValid = false;
+//    }
+//    if (this.password.trim().equals("") || this.password == null) {
+//      errors.add("Invalid password!");
+//      isValid = false;
+//    }
+//    if (this.password.length() < 8) {
+//      errors.add("Password must be at least 8 characters");
+//      isValid = false;
+//    }
+    pattern = Pattern.compile(RULE_OF_EMAIL);
+    matcher = pattern.matcher(email);
+    if (!matcher.matches()) {
       errors.add("Invalid email!");
       isValid = false;
     }
-    if (this.username.trim().equals("") || this.username == null) {
+    pattern = Pattern.compile(RULE_OF_USERNAME);
+    matcher = pattern.matcher(username);
+    if (!matcher.matches()) {
       errors.add("Invalid username!");
       isValid = false;
     }
-    if (this.password.trim().equals("") || this.password == null) {
+    pattern = Pattern.compile(RULE_OF_PASSWORD);
+    matcher = pattern.matcher(password);
+    if (!matcher.matches()) {
       errors.add("Invalid password!");
       isValid = false;
     }
-    if (this.password.length() < 8) {
-      errors.add("Password must be at least 8 characters");
-      isValid = false;
-    }
-
-    return true;
+    
+    return isValid;
   }
 
 }

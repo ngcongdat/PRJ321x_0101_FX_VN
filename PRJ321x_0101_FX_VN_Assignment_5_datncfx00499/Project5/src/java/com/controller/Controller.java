@@ -5,7 +5,9 @@
  */
 package com.controller;
 
+import com.bean.User;
 import com.database.DBContext;
+import com.database.DBUser;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,7 +46,10 @@ public class Controller extends HttpServlet {
       response.sendRedirect("home");
     }
     
+    HttpSession session = request.getSession();
     Connection conn = null;
+    
+    
     
     try {
       conn = new DBContext().getConnection();
@@ -51,8 +57,34 @@ public class Controller extends HttpServlet {
       Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       return;
     }
+    DBUser dbUser = new DBUser(conn);
     
-    response.getWriter().println("Hello");
+    String email = request.getParameter("email");
+    String username = request.getParameter("username");
+    String password = request.getParameter("password");
+    
+    
+    /**
+     * Login Process
+     *
+     * Validate, query in database and login
+     */
+    if(action.equals("signin")) {
+      User user = new User(email, username, password);
+      
+      try {
+        if(dbUser.login(username, password)) {
+          session.setAttribute("user", user);
+          request.getRequestDispatcher("home").forward(request, response);
+        } else {
+          request.setAttribute("errors", user.getErrors());
+          request.getRequestDispatcher("sign-in").forward(request, response);
+        }
+      } catch (SQLException ex) {
+        response.sendRedirect("error");
+      }
+              
+    }
     
     try {
       conn.close();

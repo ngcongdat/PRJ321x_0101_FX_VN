@@ -37,7 +37,7 @@
               <div class="card-body">
                 <h5 class="card-title text-center">Sign In</h5>
                 <form class="form-address" action="Controller" method="post">
-                  <input type="hidden" name="action" value="signup">
+                  <input type="hidden" name="action" value="signin">
                   <div class="form-label-group">
                     <input type="text" name="username" value="" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                     <label for="inputUsername">Username</label>
