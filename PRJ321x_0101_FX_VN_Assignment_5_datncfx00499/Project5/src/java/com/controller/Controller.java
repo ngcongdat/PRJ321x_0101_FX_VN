@@ -135,22 +135,28 @@ public class Controller extends HttpServlet {
      *
      * Create new email and insert into database
      */
-    else if(action.equals("sendEmail")) {
+    else if (action.equals("sendEmail")) {
+      User user = (User) session.getAttribute("user");
       DBMail dbMail = new DBMail(conn);
       boolean sent = false;
-      
+
       String toAddress = request.getParameter("toAddress");
       String ccAddress = request.getParameter("ccAddress");
       String subject = request.getParameter("subject");
       String content = request.getParameter("content");
-      
+
       MailMessage mm = new MailMessage(content, subject, toAddress, ccAddress);
       MyMail mMail = new MyMail();
-      
+
       try {
-        int userId = dbUser.getUserID(username);
-        dbMail.createMail(userId, toAddress, ccAddress, subject, content);
+        int userId = dbUser.getUserID(user.getUsername());
         sent = mMail.sendMail(mm, mMail.getMailSession());
+        if (sent) {
+          dbMail.createMail(userId, toAddress, ccAddress, subject, content);
+          response.getWriter().println("Sent");
+        } else {
+          response.getWriter().println("Not Sent");
+        }
       } catch (SQLException ex) {
         response.sendRedirect("error");
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,7 +164,7 @@ public class Controller extends HttpServlet {
         response.sendRedirect("error");
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
-      
+
     }
 
     try {

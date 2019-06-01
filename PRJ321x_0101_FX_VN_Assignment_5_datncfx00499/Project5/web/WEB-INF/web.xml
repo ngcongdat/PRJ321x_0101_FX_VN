@@ -53,7 +53,14 @@
     <servlet-name>ComposeJSP</servlet-name>
     <url-pattern>/compose</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>SentMailJSP</servlet-name>
+    <jsp-file>/pages/SentMail.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SentMailJSP</servlet-name>
+    <url-pattern>/sent</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>ErrorJSP</servlet-name>
     <jsp-file>/pages/Error.jsp</jsp-file>

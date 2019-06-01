@@ -18,69 +18,54 @@ import javax.mail.internet.MimeMultipart;
  * @author tiny
  */
 public class MyMail {
-  
+
   private String USERNAME = "ncd.ccpn@gmail.com";
-  private String APPICATION_PASSWORD = "vzgkwkrvyrfjisxa";
-  
+  private String APPICATION_PASSWORD = "vpgwmvfbtolyrslr";  //vzgkwkrvyrfjisxa
+
   public MyMail() {
 
-    }
+  }
 
-    public Session getMailSession() {
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.auth", "true");
+  public Session getMailSession() {
+    Properties props = new Properties();
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.socketFactory.port", "587");
+    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    props.put("mail.smtp.auth", "true");
 
-        // Get the Session Object
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(USERNAME, APPICATION_PASSWORD); 
-            }
-        });
-        return session;
+    // Get the Session Object
+    Session session = Session.getDefaultInstance(props,
+            new javax.mail.Authenticator() {
+      protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(USERNAME, APPICATION_PASSWORD);
+      }
+    });
+    return session;
 
-    }
+  }
 
-    public boolean sendMail(MailMessage mm, Session session) throws Exception {
-        // Create a default MimeMessenge object
-        Message message = new MimeMessage(session);
+  public boolean sendMail(MailMessage mm, Session session) throws Exception {
+    // Create a default MimeMessenge object
+    Message message = new MimeMessage(session);
 
-        // Set From: header field of the header.
-        message.setFrom(new InternetAddress(USERNAME));
+    // Set From: header field of the header.
+    message.setFrom(new InternetAddress(USERNAME));
 
-        // Set To: header field of the header.
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mm.getToAddress()));
+    // Set To: header field of the header.
+    message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(mm.getToAddress()));
 
-        // Set Subject: header field
-        message.setSubject(mm.getSubject());
+    // Set Subject: header field
+    message.setSubject(mm.getSubject());
 
-        // Creates message part
-        MimeBodyPart messageBodyPart = new MimeBodyPart();
-        messageBodyPart.setContent(mm.getMessage(), "text/html");
+    // Now set the actual message
+    message.setText(mm.getMessage());
 
-        // Creates multi-part
-        Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(messageBodyPart);
+    // Send message
+    Transport.send(message);
 
-        // Adds attachments
-//        if(filePath != "" && filePath != null) {
-//            MimeBodyPart attachPart = new MimeBodyPart();
-//            attachPart.attachFile(filePath);
-//            multipart.addBodyPart(attachPart);
-//        }
+    return true;
+  }
 
-        // sets the multi-part as e-mail's content
-        message.setContent(multipart);
-
-        // Now set the actual message
-//        message.setText(mm.getMessage());
-        // Send message
-        Transport.send(message);
-
-        return true;
-    }
-    
 }
