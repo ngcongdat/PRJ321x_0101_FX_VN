@@ -5,7 +5,9 @@
  */
 package com.controller;
 
+import com.bean.MailMessage;
 import com.bean.User;
+import com.business.MyMail;
 import com.database.DBContext;
 import com.database.DBMail;
 import com.database.DBUser;
@@ -135,16 +137,24 @@ public class Controller extends HttpServlet {
      */
     else if(action.equals("sendEmail")) {
       DBMail dbMail = new DBMail(conn);
+      boolean sent = false;
       
       String toAddress = request.getParameter("toAddress");
       String ccAddress = request.getParameter("ccAddress");
       String subject = request.getParameter("subject");
       String content = request.getParameter("content");
       
+      MailMessage mm = new MailMessage(content, subject, toAddress, ccAddress);
+      MyMail mMail = new MyMail();
+      
       try {
         int userId = dbUser.getUserID(username);
         dbMail.createMail(userId, toAddress, ccAddress, subject, content);
+        sent = mMail.sendMail(mm, mMail.getMailSession());
       } catch (SQLException ex) {
+        response.sendRedirect("error");
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (Exception ex) {
         response.sendRedirect("error");
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
