@@ -43,24 +43,24 @@
               <div class="card-body">
                 <form class="form-address" id="sendEmail" action="Controller" method="post">
                   <input type="hidden" name="action" value="sendEmail">
-                  <!--<label for="inputToAdress" class="font-weight-bold input-title">To:</label>-->
                   <div class="form-label-group">
-                    <input type="email" name="toaddress" value="" id="inputToAdress" class="form-control" placeholder="To:" required autofocus>
+                    <input type="text" id="inputFrom" class="form-control" placeholder="From:" disabled="true">
+                    <label for="inputFrom">From: ${sessionScope.user.username}</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="email" name="toAddress" value="" id="inputToAdress" class="form-control" placeholder="To:" required autofocus>
                     <label for="inputToAdress">To:</label>
                   </div>
-                  <!--<label for="inputCCAddress" class="font-weight-bold input-title">CC:</label>-->
                   <div class="form-label-group">
-                    <input type="email" name="ccaddress" value="" id="inputCCAddress" class="form-control" placeholder="CC:">
+                    <input type="email" name="ccAddress" value="" id="inputCCAddress" class="form-control" placeholder="CC:">
                     <label for="inputCCAddress">CC:</label>
                   </div>
-                  <!--<label for="inputSubject" class="font-weight-bold input-title">Subject:</label>-->
                   <div class="form-label-group">
                     <input type="text" name="subject" value="" id="inputSubject" class="form-control" placeholder="Subject:" required>
                     <label for="inputSubject">Subject:</label>
                   </div>
                   <input type="hidden" name="content" value="">
                 </form>
-                <!--<label onclick="focusEditor();" class="font-weight-bold input-title">Content:</label>-->
               </div>
             </div>
             <div id="toolbar"></div>

@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS MyMail(
     ccAddress VARCHAR(255),
     subject TINYTEXT,
     content MEDIUMTEXT,
+    dateSend DATETIME,
     CONSTRAINT PK_EmailId PRIMARY KEY (emailId),
     CONSTRAINT FK_UserMail FOREIGN KEY FK_User(user) REFERENCES Users(userId)
 );

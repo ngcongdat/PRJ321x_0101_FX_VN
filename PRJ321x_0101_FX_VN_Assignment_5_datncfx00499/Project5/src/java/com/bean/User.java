@@ -73,23 +73,7 @@ public class User {
   public boolean validate(User user) {
 
     boolean isValid = true;
-    
-//    if (this.email.trim().equals("") || this.email == null) {
-//      errors.add("Invalid email!");
-//      isValid = false;
-//    }
-//    if (this.username.trim().equals("") || this.username == null) {
-//      errors.add("Invalid username!");
-//      isValid = false;
-//    }
-//    if (this.password.trim().equals("") || this.password == null) {
-//      errors.add("Invalid password!");
-//      isValid = false;
-//    }
-//    if (this.password.length() < 8) {
-//      errors.add("Password must be at least 8 characters");
-//      isValid = false;
-//    }
+
     pattern = Pattern.compile(RULE_OF_EMAIL);
     matcher = pattern.matcher(email);
     if (!matcher.matches()) {
