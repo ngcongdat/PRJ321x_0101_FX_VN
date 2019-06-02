@@ -81,6 +81,8 @@ public class Controller extends HttpServlet {
       try {
         if (dbUser.isExistUsername(username)) {
           if (dbUser.checkPassword(username, password)) {
+            int userId = dbUser.getUserID(username);
+            session.setAttribute("userId", userId);
             session.setAttribute("user", user);
             request.getRequestDispatcher("home").forward(request, response);
           } else {

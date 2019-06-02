@@ -6,6 +6,7 @@
 package com.business;
 
 import com.bean.MailMessage;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -46,21 +47,36 @@ public class MyMail {
   }
 
   public boolean sendMail(MailMessage mm, Session session) throws Exception {
+    ArrayList<String> toEmails = new ArrayList<>();
+    toEmails.add(mm.getToAddress());
+
+    if (!mm.getCcAdress().equals("") || (mm.getCcAdress() != null)) {
+      toEmails.add(mm.getCcAdress());
+    }
+
     // Create a default MimeMessenge object
     Message message = new MimeMessage(session);
 
     // Set From: header field of the header.
     message.setFrom(new InternetAddress(USERNAME));
 
-    // Set To: header field of the header.
-    message.setRecipients(Message.RecipientType.TO,
-            InternetAddress.parse(mm.getToAddress()));
-
+    // Set To and CC: header field of the header.
+    for (String email : toEmails) {
+      message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+    }
     // Set Subject: header field
     message.setSubject(mm.getSubject());
 
-    // Now set the actual message
-    message.setText(mm.getMessage());
+    // Creates message part
+    MimeBodyPart messageBodyPart = new MimeBodyPart();
+    messageBodyPart.setContent(mm.getMessage(), "text/html");
+
+    // Creates multi-part
+    Multipart multipart = new MimeMultipart();
+    multipart.addBodyPart(messageBodyPart);
+
+    // Set the multi-part as e-mail's content
+    message.setContent(multipart);
 
     // Send message
     Transport.send(message);
