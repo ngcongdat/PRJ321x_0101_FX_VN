@@ -15,9 +15,9 @@ INSERT INTO Users(email, username, password) VALUES ('ncd.ccpn@gmail.com', 'admi
 CREATE TABLE IF NOT EXISTS MyMail(
 	emailId INT AUTO_INCREMENT,
     user INT NOT NULL,
-    toAddress VARCHAR(255),
+    toAddress VARCHAR(255) NOT NULL,
     ccAddress VARCHAR(255),
-    subject TINYTEXT,
+    subject TINYTEXT NOT NULL,
     content MEDIUMTEXT,
     dateSend DATETIME,
     CONSTRAINT PK_EmailId PRIMARY KEY (emailId),

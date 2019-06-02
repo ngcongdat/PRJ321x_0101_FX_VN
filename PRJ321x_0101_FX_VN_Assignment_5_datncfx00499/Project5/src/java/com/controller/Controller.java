@@ -147,7 +147,8 @@ public class Controller extends HttpServlet {
       String ccAddress = request.getParameter("ccAddress");
       String subject = request.getParameter("subject");
       String content = request.getParameter("content");
-
+      String server = request.getParameter("server");
+      
       MailMessage mm = new MailMessage(content, subject, toAddress, ccAddress);
 
       try {

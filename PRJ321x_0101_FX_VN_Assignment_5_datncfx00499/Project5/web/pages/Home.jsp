@@ -21,8 +21,6 @@
     <%-- Bootstrap CSS --%>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
   </head>
   <body>
 
@@ -44,7 +42,7 @@
               <c:otherwise>
                 <h1 class="font-weight-light">Welcome back ${sessionScope.user.username}!</h1>
                 <p class="lead">How are you today?</p>
-                <a class="lead" href="compose">Send mail now</a>
+                <span><a class="btn btn-primary" href="compose">Send mail now</a></span>
               </c:otherwise>
             </c:choose>
 
