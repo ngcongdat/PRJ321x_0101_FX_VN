@@ -38,6 +38,26 @@
 
         <div class="container-fluid mb-5 text-editor">
           <div class="container pt-5 pb-5 shadow rounded">
+            <c:choose>
+              <c:when test="${requestScope.sendSuccess != null}">
+                <div class="row">
+                  <div class="col-12" style="padding: 0 2rem;">
+                    <div class="alert alert-success text-center m-0" role="alert">
+                      ${requestScope.sendSuccess}
+                    </div>
+                  </div>
+                </div>
+              </c:when>
+              <c:when test="${requestScope.sendFail != null}">
+                <div class="row">
+                  <div class="col-12" style="padding: 0 2rem;">
+                    <div class="alert alert-danger text-center m-0" role="alert">
+                      ${requestScope.sendFail}
+                    </div>
+                  </div>
+                </div>
+              </c:when>
+            </c:choose>
             <div class="card card-address" style="border: none; box-shadow: none;">
               <div class="card-body">
                 <form class="form-address" id="sendEmail" action="Controller" method="post">
@@ -46,17 +66,42 @@
                     <input type="text" id="inputFrom" class="form-control" placeholder="From:" disabled="true">
                     <label for="inputFrom">From: ${sessionScope.user.username}</label>
                   </div>
+
                   <div class="form-label-group">
-                    <input type="email" name="toAddress" value="" id="inputToAdress" class="form-control" placeholder="To:" required autofocus>
-                    <label for="inputToAdress">To:</label>
+                    <c:choose>
+                      <c:when test="${requestScope.invalidEmail != null}">
+                        <input type="text" id="inputFrom" class="form-control is-invalid" placeholder="To:">
+                        <label for="inputFrom">To:</label>
+                        <div class="invalid-feedback text-center">
+                          ${requestScope.invalidEmail}
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <input type="email" name="toAddress" value="" id="inputToAdress" class="form-control" placeholder="To:" required autofocus>
+                        <label for="inputToAdress">To:</label>
+                      </c:otherwise>
+                    </c:choose>
                   </div>
+
                   <div class="form-label-group">
                     <input type="email" name="ccAddress" value="" id="inputCCAddress" class="form-control" placeholder="CC:">
                     <label for="inputCCAddress">CC:</label>
                   </div>
+
                   <div class="form-label-group">
-                    <input type="text" name="subject" value="" id="inputSubject" class="form-control" placeholder="Subject:" required>
-                    <label for="inputSubject">Subject:</label>
+                    <c:choose>
+                      <c:when test="${requestScope.invalidSubject != null}">
+                        <input type="text" name="subject" value="" id="inputSubject" class="form-control is-invalid" placeholder="Subject:" required>
+                        <label for="inputSubject">Subject:</label>
+                        <div class="invalid-feedback text-center">
+                          ${requestScope.invalidSubject}
+                        </div>
+                      </c:when>
+                      <c:otherwise>
+                        <input type="text" name="subject" value="" id="inputSubject" class="form-control" placeholder="Subject:" required>
+                        <label for="inputSubject">Subject:</label>
+                      </c:otherwise>
+                    </c:choose>
                   </div>
                   <input type="hidden" name="content" value="">
                 </form>

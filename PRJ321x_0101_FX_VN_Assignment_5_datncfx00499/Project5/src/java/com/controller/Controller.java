@@ -140,6 +140,7 @@ public class Controller extends HttpServlet {
     else if (action.equals("sendEmail")) {
       User user = (User) session.getAttribute("user");
       DBMail dbMail = new DBMail(conn);
+      MyMail mMail = new MyMail();
       boolean sent = false;
 
       String toAddress = request.getParameter("toAddress");
@@ -148,22 +149,36 @@ public class Controller extends HttpServlet {
       String content = request.getParameter("content");
 
       MailMessage mm = new MailMessage(content, subject, toAddress, ccAddress);
-      MyMail mMail = new MyMail();
 
       try {
-        int userId = dbUser.getUserID(user.getUsername());
-        sent = mMail.sendMail(mm, mMail.getMailSession());
-        if (sent) {
-          dbMail.createMail(userId, toAddress, ccAddress, subject, content);
-          response.getWriter().println("Sent");
+        if (!mm.validate(mm)) {
+          List<String> errors = mm.getErrors();
+          for (String e : errors) {
+            if (e.equals("Invalid email!")) {
+              request.setAttribute("invalidEmail", e);
+            } else if (e.equals("Subject is required!")) {
+              request.setAttribute("invalidSubject", e);
+            }
+          }
+          request.getRequestDispatcher("compose").forward(request, response);
         } else {
-          response.getWriter().println("Not Sent");
+          int userId = dbUser.getUserID(user.getUsername());
+          sent = mMail.sendMail(mm, mMail.getMailSession());
+          if (sent) {
+            dbMail.createMail(userId, toAddress, ccAddress, subject, content);
+            request.setAttribute("sendSuccess", "Email sent success, thank you!");
+            request.getRequestDispatcher("compose").forward(request, response);
+          } else {
+            request.setAttribute("sendFail", "Email sent fail, please try again!");
+            request.getRequestDispatcher("compose").forward(request, response);
+          }
         }
       } catch (SQLException ex) {
         response.sendRedirect("error");
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       } catch (Exception ex) {
-        response.sendRedirect("error");
+        request.setAttribute("sendFail", "Email sent fail, please try again!");
+        request.getRequestDispatcher("compose").forward(request, response);
         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       }
 
