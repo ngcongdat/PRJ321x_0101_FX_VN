@@ -62,6 +62,14 @@
     <url-pattern>/sent</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>InboxJSP</servlet-name>
+    <jsp-file>/pages/Inbox.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InboxJSP</servlet-name>
+    <url-pattern>/inbox</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ErrorJSP</servlet-name>
     <jsp-file>/pages/Error.jsp</jsp-file>
   </servlet>

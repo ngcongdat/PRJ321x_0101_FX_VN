@@ -37,6 +37,9 @@
                       <a class="nav-link" href="compose">Compose</a>
                     </li>
                     <li class="nav-item">
+                      <a class="nav-link" href="inbox">Inbox</a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link" href="sent">Sent</a>
                     </li>
                     <li class="nav-item">

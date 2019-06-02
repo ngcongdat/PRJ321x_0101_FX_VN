@@ -62,18 +62,9 @@
               <div class="card-body">
                 <form class="form-address" id="sendEmail" action="Controller" method="post">
                   <input type="hidden" name="action" value="sendEmail">
-                  <div class="d-flex">
-                    <div class="form-label-group w-75">
-                      <input type="text" id="inputFrom" class="form-control" placeholder="From:" disabled="true">
-                      <label for="inputFrom">From: ${sessionScope.user.username}</label>
-                    </div>
-                    <div class="form-group ml-5 d-flex align-items-center">
-                      <label for="inputServer" class="m-0">Server:</label>
-                      <select name="server" id="inputServer" class="form-control ml-2">
-                        <option value="SMTP">SMTP</option>
-                        <option value="POP3">POP3</option>
-                      </select>
-                    </div>
+                  <div class="form-label-group">
+                    <input type="text" id="inputFrom" class="form-control" placeholder="From:" disabled="true">
+                    <label for="inputFrom">From: ${sessionScope.user.username}</label>
                   </div>
                   <div class="form-label-group">
                     <c:choose>
