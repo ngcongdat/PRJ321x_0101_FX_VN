@@ -7,6 +7,7 @@ package com.controller;
 
 import com.bean.MailMessage;
 import com.bean.User;
+import com.business.InboxMail;
 import com.business.MyMail;
 import com.database.DBContext;
 import com.database.DBMail;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +43,19 @@ public class Controller extends HttpServlet {
     } else if (action.equals("logout")) {
       session.invalidate();
       response.sendRedirect("home");
+    } else if(action.equals("inbox")) {
+      try {
+        List<MailMessage> listMail = new InboxMail().getInboxMail();
+//          response.getWriter().println(listMail.size());
+        
+        for(MailMessage mail : listMail) {
+          response.getWriter().println("From: " + mail.getFrom());
+          response.getWriter().println("Subject: " + mail.getSubject());
+          response.getWriter().println("Message: " + mail.getMessage());
+        }
+      } catch (MessagingException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
   }

@@ -42,11 +42,11 @@
         </sql:query>
         <div class="container" style="margin-top: 100px; margin-bottom: 20px">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 content-area">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <c:forEach var="email" items="${allEmails.rows}">
                 <c:set var="dateSend" value="${email.dateSend}"/>
-                <div class="row mt-3 mb-3 mr-2 ml-2 content-row">
-                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3 post-box">
+                <div class="row mt-3 mb-3 mr-2 ml-2">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3">
                     <h3 class="font-weight-bold">${email.subject}</h3>
                     <span>To: </span><span style="margin-left: 20px">${email.toAddress}</span>
                     <br>

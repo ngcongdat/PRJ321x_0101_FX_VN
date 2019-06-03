@@ -6,6 +6,7 @@
 package com.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,8 @@ public class MailMessage {
   private Pattern pattern;
   private Matcher matcher;
 
-  private String message, subject, toAddress, ccAddress;
+  private String message, subject, from, toAddress, ccAddress;
+  private Date dateReceive;
   private List<String> errors = new ArrayList<>();
 
   private final String RULE_OF_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -28,6 +30,12 @@ public class MailMessage {
   // Contructors
   public MailMessage() {
 
+  }
+
+  public MailMessage(String from, String subject, Date dateReceive) {
+    this.from = from;
+    this.subject = subject;
+    this.dateReceive = dateReceive;
   }
 
   public MailMessage(String message, String subject, String toAddress, String ccAddress) {
@@ -54,6 +62,14 @@ public class MailMessage {
     this.subject = subject;
   }
 
+  public String getFrom() {
+    return from;
+  }
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
+
   public String getToAddress() {
     return toAddress;
   }
@@ -62,11 +78,11 @@ public class MailMessage {
     this.toAddress = toAddress;
   }
 
-  public String getCcAdress() {
+  public String getCcAddress() {
     return ccAddress;
   }
 
-  public void setCcAdress(String toAddress) {
+  public void setCcAddress(String ccAddress) {
     this.ccAddress = ccAddress;
   }
 
@@ -76,6 +92,14 @@ public class MailMessage {
 
   public void setErrors(List<String> errors) {
     this.errors = errors;
+  }
+
+  public Date getDateReceive() {
+    return dateReceive;
+  }
+
+  public void setDateReceive(Date dateReceive) {
+    this.dateReceive = dateReceive;
   }
 
   public boolean validate(MailMessage mm) {

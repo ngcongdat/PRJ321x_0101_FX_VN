@@ -50,8 +50,8 @@ public class MyMail {
     ArrayList<String> toEmails = new ArrayList<>();
     toEmails.add(mm.getToAddress());
 
-    if (!mm.getCcAdress().equals("") || (mm.getCcAdress() != null)) {
-      toEmails.add(mm.getCcAdress());
+    if (!mm.getCcAddress().equals("") || (mm.getCcAddress() != null)) {
+      toEmails.add(mm.getCcAddress());
     }
 
     // Create a default MimeMessenge object
