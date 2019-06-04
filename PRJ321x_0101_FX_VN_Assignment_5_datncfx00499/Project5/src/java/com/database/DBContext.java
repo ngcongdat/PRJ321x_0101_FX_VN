@@ -16,6 +16,7 @@ import javax.sql.DataSource;
  */
 public class DBContext {
   
+  // Get connection with database
   public Connection getConnection() throws Exception {
     InitialContext initialContext = new InitialContext();
 

@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,21 +42,7 @@ public class Controller extends HttpServlet {
     } else if (action.equals("logout")) {
       session.invalidate();
       response.sendRedirect("home");
-    } else if(action.equals("inbox")) {
-      try {
-        List<MailMessage> listMail = new InboxMail().getInboxMail();
-//          response.getWriter().println(listMail.size());
-        
-        for(MailMessage mail : listMail) {
-          response.getWriter().println("From: " + mail.getFrom());
-          response.getWriter().println("Subject: " + mail.getSubject());
-          response.getWriter().println("Message: " + mail.getMessage());
-        }
-      } catch (MessagingException ex) {
-        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-      }
     }
-
   }
 
   @Override
@@ -162,8 +147,7 @@ public class Controller extends HttpServlet {
       String ccAddress = request.getParameter("ccAddress");
       String subject = request.getParameter("subject");
       String content = request.getParameter("content");
-      String server = request.getParameter("server");
-      
+
       MailMessage mm = new MailMessage(content, subject, toAddress, ccAddress);
 
       try {
@@ -203,6 +187,7 @@ public class Controller extends HttpServlet {
     try {
       conn.close();
     } catch (SQLException ex) {
+      response.sendRedirect("error");
       Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
       return;
     }

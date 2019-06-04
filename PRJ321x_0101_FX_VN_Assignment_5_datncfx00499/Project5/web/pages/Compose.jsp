@@ -33,7 +33,7 @@
       </head>
       <body>
 
-        <!--  Import navigation bar into pages  -->
+        <%--  Import navigation bar into pages  --%>
         <c:import url="/components/NavBar.jsp"/>
 
         <div class="container-fluid mb-5 text-editor">
@@ -113,13 +113,13 @@
           </div>
         </div>
 
-        <!--  Import navigation bar into pages  -->
+        <%--  Import navigation bar into pages  --%>
         <c:import url="/components/Footer.jsp"/>
 
         <%-- Quill library --%>
         <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-        <!-- Initialize Quill editor -->
+        <%-- Initialize Quill editor --%>
         <script>
           var toolbarOptions = [
             ['bold', 'italic', 'underline', 'strike'],

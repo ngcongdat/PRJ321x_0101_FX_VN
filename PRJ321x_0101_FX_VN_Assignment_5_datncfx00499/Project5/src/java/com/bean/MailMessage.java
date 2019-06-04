@@ -102,6 +102,7 @@ public class MailMessage {
     this.dateReceive = dateReceive;
   }
 
+  // Validate email, subject field from compose form
   public boolean validate(MailMessage mm) {
 
     boolean isValid = true;

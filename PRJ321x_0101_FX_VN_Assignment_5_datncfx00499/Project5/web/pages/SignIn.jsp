@@ -24,7 +24,7 @@
   </head>
   <body>
 
-    <!--  Import navigation bar into pages  -->
+    <%--  Import navigation bar into pages  --%>
     <c:import url="/components/NavBar.jsp"/>
 
     <div class="container-fluid signin-signup d-flex align-items-center">
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <!--  Import navigation bar into pages  -->
+    <%--  Import navigation bar into pages  --%>
     <c:import url="/components/Footer.jsp"/>
 
   </body>

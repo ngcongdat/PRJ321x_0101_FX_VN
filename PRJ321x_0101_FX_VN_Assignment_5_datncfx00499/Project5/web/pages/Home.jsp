@@ -24,7 +24,7 @@
   </head>
   <body>
 
-    <!--  Import navigation bar into pages  -->
+    <%--  Import navigation bar into pages  --%>
     <c:import url="/components/NavBar.jsp"/>
 
       <header class="home-header">
@@ -51,7 +51,7 @@
       </div>
     </header>
 
-    <!--  Import navigation bar into pages  -->
+    <%--  Import navigation bar into pages  --%>
     <c:import url="/components/Footer.jsp"/>
 
   </body>

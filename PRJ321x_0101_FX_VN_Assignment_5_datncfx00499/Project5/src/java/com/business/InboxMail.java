@@ -6,15 +6,11 @@
 package com.business;
 
 import com.bean.MailMessage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -22,8 +18,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class InboxMail {
 
-  private String USERNAME = "ncd.ccpn@gmail.com";
-  private String APPICATION_PASSWORD = "vpgwmvfbtolyrslr";  //vzgkwkrvyrfjisxa
+  private String USERNAME = "examples@gmail.com"; // change accordingly
+  private String APPICATION_PASSWORD = "xxxxxxxxxxxxxxxx";  // change accordingly
 
   public List<MailMessage> getInboxMail() {
 
@@ -48,11 +44,11 @@ public class InboxMail {
       Store store = session.getStore("pop3");
       store.connect("pop.gmail.com", USERNAME, APPICATION_PASSWORD);
 
+      // Create the folder object and open it
       Folder inbox = store.getFolder("INBOX");
       inbox.open(Folder.READ_ONLY);
 
       Message[] messages = inbox.getMessages();
-//    for (Message message : messages) {
       for (int i = 0; i < 10; i++) {
         String from = "";
         InternetAddress[] addresses = (InternetAddress[]) messages[i].getFrom();
@@ -60,7 +56,6 @@ public class InboxMail {
           from += address.getAddress();
         }
         listMail.add(new MailMessage(from, messages[i].getSubject(), messages[i].getSentDate()));
-
       }
       inbox.close(false);
       store.close();

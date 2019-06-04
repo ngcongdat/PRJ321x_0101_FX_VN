@@ -70,6 +70,7 @@ public class User {
     this.errors = errors;
   }
 
+  // Validate email, username, password field from sign up form
   public boolean validate(User user) {
 
     boolean isValid = true;

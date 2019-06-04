@@ -21,6 +21,7 @@ public class DBMail {
     this.conn = conn;
   }
 
+  // Create new email and insert into database
   public void createMail(int userId, String toAddress, String ccAddress, String subject, String content) throws SQLException {
 
     String insert = "INSERT INTO MyMail (user, toAddress, ccAddress, subject, content, dateSend)"

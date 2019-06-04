@@ -23,6 +23,7 @@ public class DBUser {
     this.conn = conn;
   }
 
+  // Create new user and insert into database
   public void createUser(User user) throws SQLException {
     String insert = "INSERT INTO Users (email, username, password) VALUES (?, ?, ?)";
     PreparedStatement ps = conn.prepareStatement(insert);
@@ -33,6 +34,7 @@ public class DBUser {
     ps.close();
   }
   
+  // Check exist user by username
   public boolean isExistUsername(String username) throws SQLException {
 
     int count = 0;
@@ -53,6 +55,7 @@ public class DBUser {
 
   }
 
+  // Check password of user
   public boolean checkPassword(String username, String password) throws SQLException {
     String query = "SELECT password FROM Users WHERE username = ?";
     PreparedStatement ps = conn.prepareStatement(query);
@@ -71,6 +74,7 @@ public class DBUser {
     }
   }
 
+  // Get user id by username
   public int getUserID(String username) throws SQLException {
 
     int userId = 0;

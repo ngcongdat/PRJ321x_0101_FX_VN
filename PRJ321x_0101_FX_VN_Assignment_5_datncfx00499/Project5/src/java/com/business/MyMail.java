@@ -6,13 +6,9 @@
 package com.business;
 
 import com.bean.MailMessage;
-import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 
 /**
  *
@@ -20,8 +16,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class MyMail {
 
-  private String USERNAME = "ncd.ccpn@gmail.com";
-  private String APPICATION_PASSWORD = "vpgwmvfbtolyrslr";  //vzgkwkrvyrfjisxa
+  private String USERNAME = "examples@gmail.com"; // change accordingly
+  private String APPICATION_PASSWORD = "xxxxxxxxxxxxxxxx";  // change accordingly
 
   public MyMail() {
 
@@ -47,12 +43,6 @@ public class MyMail {
   }
 
   public boolean sendMail(MailMessage mm, Session session) throws Exception {
-    ArrayList<String> toEmails = new ArrayList<>();
-    toEmails.add(mm.getToAddress());
-
-    if (!mm.getCcAddress().equals("") || (mm.getCcAddress() != null)) {
-      toEmails.add(mm.getCcAddress());
-    }
 
     // Create a default MimeMessenge object
     Message message = new MimeMessage(session);
@@ -61,9 +51,11 @@ public class MyMail {
     message.setFrom(new InternetAddress(USERNAME));
 
     // Set To and CC: header field of the header.
-    for (String email : toEmails) {
-      message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+    message.addRecipient(Message.RecipientType.TO, new InternetAddress(mm.getToAddress()));
+    if (!mm.getCcAddress().trim().equals("") && (mm.getCcAddress() != null)) {
+      message.addRecipient(Message.RecipientType.CC, new InternetAddress(mm.getCcAddress()));
     }
+
     // Set Subject: header field
     message.setSubject(mm.getSubject());
 
