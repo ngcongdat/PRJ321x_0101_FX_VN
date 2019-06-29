@@ -3,34 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controller;
+package com.model;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author tiny
  */
-public class LogoutProcess extends HttpServlet {
+public class Cookies extends HttpServlet {
+  
+  public static String COOKIES = "reader-cookies";
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    HttpSession session = request.getSession(false);
-
-    // Clear session and redirect
-    session.invalidate();
-    response.sendRedirect("home");
+    Cookie c = new Cookie(Cookies.COOKIES, "reader-back");
+    c.setMaxAge(1800);
+    response.addCookie(c);
+    request.getRequestDispatcher("home").forward(request, response);
   }
-
-  @Override
-  public String getServletInfo() {
-    return "Process when user logout";
-  }// </editor-fold>
 
 }

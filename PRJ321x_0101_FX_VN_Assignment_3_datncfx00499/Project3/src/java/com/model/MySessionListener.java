@@ -34,7 +34,6 @@ public class MySessionListener implements HttpSessionListener {
     HttpSession session = se.getSession(); // get session from HttpSessionEvent
     sessions.add(session.getId());
     session.setAttribute(MySessionListener.COUNTER, this);
-    System.out.println("Get Session");
   }
 
   @Override

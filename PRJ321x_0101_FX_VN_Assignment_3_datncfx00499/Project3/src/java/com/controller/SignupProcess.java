@@ -43,7 +43,7 @@ public class SignupProcess extends HttpServlet {
     }
 
     // Clear session
-    request.getSession().invalidate();
+    request.getSession(false).invalidate();
 
     // Add user to Map
     uMap.addUsers(username, password);

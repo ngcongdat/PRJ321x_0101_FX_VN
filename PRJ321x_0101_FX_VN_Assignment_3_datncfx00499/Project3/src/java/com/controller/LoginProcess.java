@@ -5,22 +5,20 @@
  */
 package com.controller;
 
-import com.model.MySessionListener;
+import com.model.Cookies;
 import com.model.User;
 import com.model.UserData;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
 
 /**
  *
@@ -35,11 +33,11 @@ public class LoginProcess extends HttpServlet {
           throws ServletException, IOException {
 
     // Read all users from file to map
-//    if (UserData.readFile() != null) {
-//      uMap.setUsers(UserData.readFile());
-//    } else {
+    if (UserData.readFile() != null) {
+      uMap.setUsers(UserData.readFile());
+    } else {
       uMap = new UsersMap();
-//    }
+    }
 
     // Get parameter from client
     String username = request.getParameter("username");
@@ -70,7 +68,9 @@ public class LoginProcess extends HttpServlet {
         request.getRequestDispatcher("login").forward(request, response);
       } else {
         HttpSession session = request.getSession();
-        MySessionListener counter = new MySessionListener();
+        Cookie c = new Cookie(Cookies.COOKIES, "logged-cookies");
+        c.setMaxAge(1800);
+        response.addCookie(c);
         // Set attribute for session and redirect
         session.setAttribute("user", new User(username, password));
         request.getRequestDispatcher("index").forward(request, response);
