@@ -37,16 +37,6 @@
     <%
       List<Post> posts = (List<Post>) application.getAttribute("posts");
       Users user = (Users) session.getAttribute("user");
-//      Connection conn = null;
-//      try {
-//        conn = new DBContext().getConnection();
-//      } catch (Exception ex) {
-//        response.getWriter().println(ex.toString());
-//        return;
-//      }
-//
-//      DBPosts DBPost = new DBPosts(conn);
-//      List<Post> posts = DBPost.showAllPosts();
     %>
 
     <%if (posts == null) {
