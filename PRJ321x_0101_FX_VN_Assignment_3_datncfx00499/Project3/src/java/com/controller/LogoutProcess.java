@@ -6,13 +6,11 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,31 +21,11 @@ public class LogoutProcess extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    HttpSession session = request.getSession();
     String username = request.getParameter("username");
 
-    // Get all attributes from servlet context
-    ServletContext context = getServletContext();
-    Integer countUserLogin = (Integer) context.getAttribute("countUserLogin");
-    Map<String, String> allUsers = (Map<String, String>) context.getAttribute("allUsers");
-    String keyOfUser = "";
-
-    // Get key of Map from value
-    for (Entry<String, String> entry : allUsers.entrySet()) {
-      if (entry.getValue().equals(username)) {
-        keyOfUser = entry.getKey();
-      }
-    }
-
-    // Remove this entry and subtract user counter
-    allUsers.remove(keyOfUser);
-    countUserLogin--;
-
-    // Set all attributes again to servlet context
-    context.setAttribute("countUserLogin", countUserLogin);
-    context.setAttribute("allUsers", allUsers);
-
     // Clear session and redirect
-    request.getSession().invalidate();
+    session.invalidate();
     response.sendRedirect("home");
   }
 

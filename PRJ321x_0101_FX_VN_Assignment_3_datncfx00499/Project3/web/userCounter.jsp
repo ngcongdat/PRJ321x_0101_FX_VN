@@ -4,6 +4,7 @@
     Author     : tiny
 --%>
 
+<%@page import="com.model.MySessionListener"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
@@ -33,9 +34,10 @@
     <%
       if (session.getAttribute("user") == null) {
         response.sendRedirect("login");
-      } else {%>
 
-    <% Map<String, String> allUsers = (Map<String, String>) application.getAttribute("allUsers");%>
+      } else {
+        MySessionListener counter = (MySessionListener) session.getAttribute(MySessionListener.COUNTER);
+    %>
 
     <%-- Include navigation bar --%>
     <%@include file="components/navbar.jsp" %>
@@ -48,26 +50,7 @@
             <h2 class="text-white">All Users Online</h2>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 d-flex flex-column align-items-center justify-content-center">
-            <h1 class="text-white">${applicationScope.countUserLogin}</h1>
-            <h2 class="text-white mt-5">List Users</h2>
-
-            <table class="table table-dark text-center w-50">
-              <tbody>
-                <tr>
-                  <th scope="col">Username</th>
-                </tr>
-                <%-- Show all users online --%>
-                <%
-                  Set<String> keySet = allUsers.keySet();
-                  for (String i : keySet) {%>
-                <tr>
-                  <td><%=allUsers.get(i)%></td>
-                </tr>
-                <%
-                  }
-                %>
-              </tbody>
-            </table>
+            <h1 class="text-white"><%=counter.getActiveSessionNumber()%></h1>
           </div>
         </div>
       </div>

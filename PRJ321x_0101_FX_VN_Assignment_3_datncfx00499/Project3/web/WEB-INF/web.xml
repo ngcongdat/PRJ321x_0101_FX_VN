@@ -98,6 +98,9 @@
   </servlet-mapping>
   
   <!-- Set session timeout-->
+  <listener>
+    <listener-class>com.model.MySessionListener</listener-class>
+  </listener>
   <session-config>
     <session-timeout>
       30

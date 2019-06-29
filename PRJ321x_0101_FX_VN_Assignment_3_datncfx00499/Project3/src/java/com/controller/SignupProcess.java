@@ -9,13 +9,11 @@ import com.model.UserData;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,9 +30,6 @@ public class SignupProcess extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    // Get session
-    HttpSession session = request.getSession();
-
     // Validate users when sign in
     ValidateUser validUser = new ValidateUser();
     String errorUsername = validUser.ValidateUsername(username);
@@ -48,7 +43,7 @@ public class SignupProcess extends HttpServlet {
     }
 
     // Clear session
-    session.invalidate();
+    request.getSession().invalidate();
 
     // Add user to Map
     uMap.addUsers(username, password);
