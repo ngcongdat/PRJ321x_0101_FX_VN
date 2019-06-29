@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSessionListener;
  */
 public class MySessionListener implements HttpSessionListener {
 
-//  private static int counter = 0;
   private List<String> sessions = new ArrayList<String>();
   public static final String COUNTER = "session-counter";
 

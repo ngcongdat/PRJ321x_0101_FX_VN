@@ -25,7 +25,7 @@ public class UserData {
   // Save user data
   public static void saveData(Map<String, String> uMap) {
     try {
-      File file = new File("Users.txt");
+      File file = new File("USER-DATA.txt");
       if (!file.exists()) {
         file.createNewFile();
       }
@@ -46,7 +46,7 @@ public class UserData {
   public static Map<String, String> readFile() {
     Map<String, String> uMap = null;
     try {
-      File file = new File("Users.txt");
+      File file = new File("USER-DATA.txt");
       FileInputStream fis = new FileInputStream(file);
       ObjectInputStream ois = new ObjectInputStream(fis);
 

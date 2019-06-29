@@ -5,7 +5,6 @@
  */
 package com.controller;
 
-import com.model.UserData;
 import com.model.UsersMap;
 import com.model.ValidateUser;
 import java.io.IOException;
@@ -47,9 +46,6 @@ public class SignupProcess extends HttpServlet {
 
     // Add user to Map
     uMap.addUsers(username, password);
-
-    // Save all users from map to file
-    UserData.saveData(uMap.getUsers());
 
     // Redirect 
     request.getRequestDispatcher("login").forward(request, response);
