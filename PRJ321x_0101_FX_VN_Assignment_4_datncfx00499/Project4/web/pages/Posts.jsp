@@ -35,18 +35,23 @@
   <body>
 
     <%
+      List<Post> posts = (List<Post>) application.getAttribute("posts");
       Users user = (Users) session.getAttribute("user");
-      Connection conn = null;
-      try {
-        conn = new DBContext().getConnection();
-      } catch (Exception ex) {
-        response.getWriter().println(ex.toString());
-        return;
-      }
-
-      DBPosts DBPost = new DBPosts(conn);
-      List<Post> posts = DBPost.showAllPosts();
+//      Connection conn = null;
+//      try {
+//        conn = new DBContext().getConnection();
+//      } catch (Exception ex) {
+//        response.getWriter().println(ex.toString());
+//        return;
+//      }
+//
+//      DBPosts DBPost = new DBPosts(conn);
+//      List<Post> posts = DBPost.showAllPosts();
     %>
+
+    <%if (posts == null) {
+        request.getRequestDispatcher("controller?action=getposts").forward(request, response);
+      } else {%>
 
     <%-- Include navigation bar --%>
     <%@include file="../components/navbar.jsp" %>
@@ -59,12 +64,10 @@
               <% if (user == null) { %>
               <h3>Hi Guest!</h3>
               <h3>Welcome to the broad!</h3>
-              <% } else {
-                int countPost = DBPost.countPost(user.getUsername());
-              %>
+              <% } else {%>
               <h3>Hi <%= user.getUsername()%></h3>
               <h3>Welcome back!</h3>
-              <p>You have <strong class="text-danger"><%= countPost%></strong> on website. Continue to write at <a href="createpost">here</a>?</p>
+              <p>You have <strong class="text-danger">${sessionScope.countPost}</strong> on website. Continue to write at <a href="createpost">here</a>?</p>
               <% }%>
             </div>
           </div>
@@ -101,14 +104,8 @@
       </div>
     </div>
 
-    <% try {
-        conn.close();
-      } catch (SQLException ex) {
-        response.getWriter().println(ex.toString());
-        return;
-      }
-    %>
 
+    <% }%>
     <%-- Include navigation bar --%>
     <%@include file="../components/footer.html" %>
 

@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,25 @@ public class Controller extends HttpServlet {
     if (action.equals("dologout")) {
       session.invalidate();
       response.sendRedirect("blogs");
+    } else if (action.equals("getposts")) {
+      Connection conn = null;
+      // Connect to database
+      try {
+        conn = new DBContext().getConnection();
+      } catch (Exception ex) {
+        response.getWriter().println(ex.toString());
+        return;
+      }
+      
+      DBPosts post = new DBPosts(conn);
+      try {
+        List<Post> posts = post.showAllPosts();
+        ServletContext context = this.getServletContext();
+        context.setAttribute("posts", posts);
+        request.getRequestDispatcher("blogs").forward(request, response);
+      } catch (SQLException ex) {
+        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
   }
@@ -75,9 +95,9 @@ public class Controller extends HttpServlet {
       try {
         // Query user in database        
         if (account.login(username, password)) {
-//          int countPost = new DBPosts(conn).countPost(username);
+          int countPost = new DBPosts(conn).countPost(username);
           session.setAttribute("user", user);
-//          session.setAttribute("countPost", countPost);
+          session.setAttribute("countPost", countPost);
           request.getRequestDispatcher("blogs").forward(request, response);
         } else {
           request.setAttribute("error", "Username or password is incorrect");
