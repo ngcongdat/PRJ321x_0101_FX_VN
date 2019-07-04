@@ -13,60 +13,67 @@
     <c:redirect url="sign-in"></c:redirect>
   </c:when>
   <c:otherwise>
+    <c:choose>
+      <c:when test="${sessionScope.allEmail == null}">
+        <c:redirect url="Controller?action=getEmail"></c:redirect>
+      </c:when>
+      <c:otherwise>
 
-    <!DOCTYPE html>
-    <html>
-      <head>
+        <!DOCTYPE html>
+        <html>
+          <head>
 
-        <%-- Required meta tags --%>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Sent Mail | Gmail SMTP WebApp</title>
+            <%-- Required meta tags --%>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Sent Mail | Gmail SMTP WebApp</title>
 
-        <%-- Customize CSS --%>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+            <%-- Customize CSS --%>
+            <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
-        <%-- Bootstrap CSS --%>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <%-- Bootstrap CSS --%>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-      </head>
-      <body>
+          </head>
+          <body>
 
-        <%--  Import navigation bar into pages  --%>
-        <c:import url="/components/NavBar.jsp"/>
+            <%--  Import navigation bar into pages  --%>
+            <c:import url="/components/NavBar.jsp"/>
 
-        <sql:setDataSource var="ds" dataSource="jdbc/MailWebApp"/>
+            <sql:setDataSource var="ds" dataSource="jdbc/MailWebApp"/>
 
-        <sql:query dataSource="${ds}" sql="SELECT * FROM MyMail WHERE user = ? ORDER BY dateSend DESC" var="allEmails">
-          <sql:param>${sessionScope.userId}</sql:param>
-        </sql:query>
-        <div class="container" style="margin-top: 100px; margin-bottom: 20px">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <c:forEach var="email" items="${allEmails.rows}">
-                <c:set var="dateSend" value="${email.dateSend}"/>
-                <div class="row mt-3 mb-3 mr-2 ml-2">
-                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3">
-                    <h3 class="font-weight-bold">${email.subject}</h3>
-                    <span>To: </span><span style="margin-left: 20px">${email.toAddress}</span>
-                    <br>
-                    <span>CC: </span><span style="margin-left: 13px">${email.ccAddress}</span>
-                    <br>
-                    <span>Date: </span><span style="margin-left: 2px"><fmt:formatDate pattern="dd-MM-yyyy" value="${dateSend}"/></span>
-                    <div class="text-secondary">
-                      ${email.content}
+            <sql:query dataSource="${ds}" sql="${sessionScope.allEmail}" var="allEmails">
+              <sql:param>${sessionScope.userId}</sql:param>
+            </sql:query>
+            <div class="container" style="margin-top: 100px; margin-bottom: 20px">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                  <c:forEach var="email" items="${allEmails.rows}">
+                    <c:set var="dateSend" value="${email.dateSend}"/>
+                    <div class="row mt-3 mb-3 mr-2 ml-2">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 shadow rounded pt-3 pb-3">
+                        <h3 class="font-weight-bold">${email.subject}</h3>
+                        <span>To: </span><span style="margin-left: 20px">${email.toAddress}</span>
+                        <br>
+                        <span>CC: </span><span style="margin-left: 13px">${email.ccAddress}</span>
+                        <br>
+                        <span>Date: </span><span style="margin-left: 2px"><fmt:formatDate pattern="dd-MM-yyyy" value="${dateSend}"/></span>
+                        <div class="text-secondary">
+                          ${email.content}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </c:forEach>
                 </div>
-              </c:forEach>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <%--  Import navigation bar into pages  --%>
-        <c:import url="/components/Footer.jsp"/>
+            <%--  Import navigation bar into pages  --%>
+            <c:import url="/components/Footer.jsp"/>
 
-      </body>
-    </html>
+          </body>
+        </html>
+      </c:otherwise>
+    </c:choose>
   </c:otherwise>
 </c:choose>

@@ -15,7 +15,13 @@ import java.sql.SQLException;
  */
 public class DBMail {
 
+  final private String SQL_ALL_MAIL = "SELECT * FROM MyMail WHERE user = ? ORDER BY dateSend DESC";
+
   private Connection conn;
+
+  public DBMail() {
+
+  }
 
   public DBMail(Connection conn) {
     this.conn = conn;
@@ -32,8 +38,12 @@ public class DBMail {
     ps.setString(3, ccAddress);
     ps.setString(4, subject);
     ps.setString(5, content);
-    
+
     ps.executeUpdate();
     ps.close();
+  }
+
+  public String getSQL() {
+    return SQL_ALL_MAIL;
   }
 }

@@ -7,7 +7,6 @@ package com.controller;
 
 import com.bean.MailMessage;
 import com.bean.User;
-import com.business.InboxMail;
 import com.business.MyMail;
 import com.database.DBContext;
 import com.database.DBMail;
@@ -42,6 +41,9 @@ public class Controller extends HttpServlet {
     } else if (action.equals("logout")) {
       session.invalidate();
       response.sendRedirect("home");
+    } else if(action.equals("getEmail")) {
+      session.setAttribute("allEmail", new DBMail().getSQL());
+      request.getRequestDispatcher("sent").forward(request, response);
     }
   }
 
